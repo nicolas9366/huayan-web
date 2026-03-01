@@ -1,1 +1,261 @@
-<h1>华宴网站正在建设中</h1>
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Huá Yàn | Luxury Asian Gastronomy</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#e69019",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#0a0a0a",
+                        "zinc-950": "#09090b",
+                        "zinc-custom": "#3f3f46",
+                    },
+                    fontFamily: {
+                        "display": ["Work Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: "Work Sans", sans-serif;
+            min-height: max(384px, 100dvh);
+            scroll-behavior: smooth;
+        }
+        .glass-nav {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        .thin-gold-border {
+            border-bottom: 1px solid rgba(230, 144, 25, 0.3);
+        }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e69019;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-slate-100 antialiased overflow-x-hidden">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-dark overflow-x-hidden">
+    <!-- Header / Top Bar -->
+    <header class="fixed top-0 left-0 right-0 z-50 flex items-center glass-nav p-4 justify-between border-b border-primary/10">
+        <div class="text-slate-100 flex size-10 shrink-0 items-center justify-start">
+            <span class="material-symbols-outlined text-2xl">menu</span>
+        </div>
+        <h1 class="text-primary text-xl font-black leading-tight tracking-[0.2em] flex-1 text-center font-display uppercase">
+            HUÁ YÀN
+        </h1>
+        <div class="flex w-10 items-center justify-end">
+            <button class="flex cursor-pointer items-center justify-center text-slate-100 p-0 hover:text-primary transition-colors">
+                <span class="material-symbols-outlined text-2xl">shopping_bag</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col pt-16">
+        <!-- Hero Section -->
+        <div class="w-full">
+            <div class="relative flex min-h-[85vh] flex-col items-center justify-center p-6 text-center">
+                <!-- Background Image -->
+                <div class="absolute inset-0 z-0 bg-background-dark">
+                    <img class="h-full w-full object-cover brightness-[0.3] contrast-125 saturate-150" alt="Cinematic close-up of a luxury dim sum dish" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZhvvNY-VQIUYEs1cC1HmnU6Tr5mi79_DIfiFg_D5bjKIIsToXFduxlm2uHFbMFjaK4Edpfa41ffhe7B2FjFUKRbnwc-hMIY7hvFgfsAmDfDl7VyKarrH16FRQQIc-Tt0V8nudrBsLQx1IbGgLrLjzPn-vKSOWHxTv6WNtFZJvXYlRk6hUKzz3vtiQnDasi9IwWqUkAASCCUHRucJor1mCZiQPq30CNBzzu6iG1hqUe741YUoFRJ00Q-Re2SYm1sCHlue54nkpmIY"/>
+                    <div class="absolute inset-0 bg-gradient-to-b from-background-dark/80 via-transparent to-background-dark"></div>
+                </div>
+                <!-- Hero Content -->
+                <div class="relative z-10 flex flex-col gap-8 max-w-lg mt-12">
+                    <div class="flex flex-col gap-4 drop-shadow-2xl">
+                        <span class="text-primary text-sm font-bold tracking-[0.4em] uppercase">Zaragoza • Spain</span>
+                        <h2 class="text-slate-100 text-6xl md:text-8xl font-black leading-tight tracking-tight drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">
+                            华宴<br/><span class="text-5xl md:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-primary via-yellow-200 to-primary">HUÁ YÀN</span>
+                        </h2>
+                        <p class="text-slate-300 text-sm md:text-base font-light leading-relaxed tracking-wide px-4 drop-shadow-md">
+                            Elevated Asian Gastronomy where tradition meets modern luxury in an immersive sensory journey. Experience the minimalist aesthetics inspired by mitiko.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs (Experience, Menu, Location) -->
+        <nav class="sticky top-[72px] z-40 bg-background-dark border-b border-primary/20 shadow-lg" style="backdrop-filter: blur(8px);">
+            <div class="flex justify-center px-4 max-w-3xl mx-auto gap-4 md:gap-16">
+                <a class="flex flex-col items-center justify-center border-b-2 border-primary text-primary pb-3 pt-4 flex-1 hover:text-white transition-colors group" href="#">
+                    <p class="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] group-hover:scale-105 transition-transform">The Experience</p>
+                </a>
+                <a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-400 pb-3 pt-4 flex-1 hover:text-white transition-colors group" href="#menu">
+                    <p class="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] group-hover:scale-105 transition-transform">Menu</p>
+                </a>
+                <a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-400 pb-3 pt-4 flex-1 hover:text-white transition-colors group" href="#location">
+                    <p class="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] group-hover:scale-105 transition-transform">Location</p>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Featured Section (An Exquisite Journey) -->
+        <section class="py-24 px-6 bg-background-dark flex flex-col items-center gap-12">
+            <div class="text-center flex flex-col gap-6">
+                <h2 class="text-slate-100 text-4xl font-light tracking-wide uppercase">An <span class="text-primary italic font-serif lowercase text-5xl">Exquisite</span> Journey</h2>
+                <div class="w-16 h-[1px] bg-primary mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 w-full max-w-5xl">
+                <div class="relative aspect-[4/5] md:aspect-[3/4] w-full overflow-hidden rounded-sm border border-primary/20 group">
+                    <img class="h-full w-full object-cover opacity-70 group-hover:scale-110 group-hover:opacity-100 transition-all duration-1000 saturate-150" alt="Modern luxury restaurant interior with gold accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmClhR2uOLCOxIyXtIDf6VlQKPAgwJZOs3k5goUv1_FslcRVdreas6Jjk2SRFARCB3mJImUtOCxaUQP07dhNwWF8jmrKvkOX3VOAISsLTRRjPjwog8rirUrpytjZj84luy7KF16q1FPYVNYcXu5M-8E_LnDXQ4pnE9c1lPdoCakn8QlVR3Wu3R7zI19rto4Zfam6_-FWwtinAgIo2QzqgFQ7OjsB0R49xRv1fOJ1_i7HgbRTvw08M2EmGV5fAC6cBI5EUCfv-NSIc"/>
+                    <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
+                        <h3 class="text-primary text-xl font-bold tracking-widest uppercase">The Ambience</h3>
+                        <p class="text-slate-300 text-sm mt-3 font-light">A curated space designed for intimacy and elegance, blending minimalist aesthetics with cultural depths.</p>
+                    </div>
+                </div>
+                <!-- The Art of Dining Content -->
+                <div class="relative aspect-[4/5] md:aspect-[3/4] w-full overflow-hidden rounded-sm border border-primary/20 group">
+                    <img class="h-full w-full object-cover opacity-70 group-hover:scale-110 group-hover:opacity-100 transition-all duration-1000 saturate-150" alt="Luxury Asian dining table with dim lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBa9h4pYhJCoi4kFQPuJwJpEqvMiBgfOk0LHsFpNUA0W0cRpmHENnMIvHtZkVUuaoVqr2mLuFFxW-70JW0WgdVcNe3bQBMEDD3u4s-bgN3owIdmG4vFl0atj_58UcRWphL1EpOtfhFprx3CoOQIsN0Rxax7rlxvMRqGhBTMtvQZKSwHaMbVq1gxGwa5UVSIdeox37-GDv0I2jIyJLfajrpygarhHduku6e0Ob6R-vI3_hkDjID43O240xDyniofoFgDFtBkyqC3xjg"/>
+                    <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
+                        <h3 class="text-primary text-xl font-bold tracking-widest uppercase">The Art of Dining</h3>
+                        <p class="text-slate-300 text-sm mt-3 font-light">Experience gastronomy redefined with every meticulous course, showcasing the pinnacle of culinary artistry.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Section -->
+        <section id="menu" class="py-24 px-6 bg-zinc-950 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-5" style="background-image: url('data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23e69019\' fill-opacity=\'1\' fill-rule=\'evenodd\'%3E%3Ccircle cx=\'3\' cy=\'3\' r=\'3\'/%3E%3Ccircle cx=\'13\' cy=\'13\' r=\'3\'/%3E%3C/g%3E%3C/svg%3E');"></div>
+            <div class="max-w-3xl mx-auto flex flex-col gap-16 relative z-10">
+                <div class="text-center">
+                    <h3 class="text-primary text-sm font-bold uppercase tracking-[0.4em] mb-4">Omnia Menu</h3>
+                    <h2 class="text-4xl text-slate-100 uppercase tracking-widest font-light">The <span class="text-primary italic font-serif lowercase text-5xl">Chef's</span> Journey</h2>
+                    <div class="w-16 h-[2px] bg-primary mx-auto mt-8"></div>
+                </div>
+                
+                <div class="flex flex-col gap-10">
+                    <div class="flex flex-col gap-3 pb-8 thin-gold-border group hover:bg-white/[0.02] p-6 rounded-md transition-all duration-300 transform hover:-translate-y-1">
+                        <div class="flex justify-between items-baseline border-b border-primary/10 pb-2">
+                            <h4 class="text-2xl font-light tracking-widest text-slate-200">Ocean's Whisper</h4>
+                            <span class="text-lg text-primary font-serif italic">I</span>
+                        </div>
+                        <p class="text-sm text-slate-400 font-light tracking-wide mt-2">Hokkaido scallop, yuzu kosho, gold leaf veil</p>
+                    </div>
+                    
+                    <div class="flex flex-col gap-3 pb-8 thin-gold-border group hover:bg-white/[0.02] p-6 rounded-md transition-all duration-300 transform hover:-translate-y-1">
+                        <div class="flex justify-between items-baseline border-b border-primary/10 pb-2">
+                            <h4 class="text-2xl font-light tracking-widest text-slate-200">Forest Umami</h4>
+                            <span class="text-lg text-primary font-serif italic">II</span>
+                        </div>
+                        <p class="text-sm text-slate-400 font-light tracking-wide mt-2">Wild maitake, black truffle, 24-hour dashi broth</p>
+                    </div>
+                    
+                    <div class="flex flex-col gap-3 pb-8 border-b border-primary/20 group hover:bg-white/[0.02] p-6 rounded-md transition-all duration-300 transform hover:-translate-y-1">
+                        <div class="flex justify-between items-baseline border-b border-primary/10 pb-2">
+                            <h4 class="text-2xl font-light tracking-widest text-slate-200">Imperial Wagyu</h4>
+                            <span class="text-lg text-primary font-serif italic">III</span>
+                        </div>
+                        <p class="text-sm text-slate-400 font-light tracking-wide mt-2">A5 Wagyu, aged soy, fermented garlic glass</p>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-12">
+                    <p class="text-sm tracking-[0.3em] text-primary/90 font-bold border border-primary/30 inline-block px-10 py-5 rounded-sm hover:bg-primary/10 transition-colors cursor-pointer">
+                        EIGHT COURSES — 145€
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Location & Booking Section -->
+        <section id="location" class="py-24 px-6 bg-background-dark">
+            <div class="text-center flex flex-col gap-6 mb-16">
+                <h2 class="text-slate-100 text-3xl font-light tracking-wider uppercase">Find <span class="text-primary italic font-serif lowercase text-4xl">Us</span></h2>
+                <div class="w-12 h-[1px] bg-primary mx-auto"></div>
+            </div>
+            <div class="max-w-5xl mx-auto border border-primary/20 bg-zinc-950 flex flex-col md:flex-row shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-hidden h-auto min-h-[400px]">
+                
+                <div class="flex-1 flex flex-col justify-center items-center md:items-start text-center md:text-left gap-8 z-10 p-12 lg:p-16">
+                    <div class="bg-background-dark p-6 rounded-full border border-primary/20 shadow-inner">
+                        <span class="material-symbols-outlined text-primary text-5xl">location_on</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl md:text-3xl font-light uppercase tracking-widest mb-4 text-slate-100 font-serif italic text-primary">Huá Yàn Zaragoza</h3>
+                        <p class="text-base md:text-lg text-slate-400 leading-loose font-light tracking-wider">
+                            Calle de la Independencia, 12<br/>
+                            50004 Zaragoza, Spain<br/>
+                            <a href="mailto:reserves@huayan.es" class="text-primary hover:underline mt-2 block">reserves@huayan.es</a>
+                        </p>
+                    </div>
+                    <button class="w-full md:w-auto px-12 py-5 bg-transparent border border-primary text-primary text-sm font-bold uppercase tracking-[0.3em] hover:bg-primary hover:text-black transition-all duration-300 mt-4 rounded-sm hover:shadow-[0_0_20px_rgba(230,144,25,0.4)]">
+                        Reserve Your Table
+                    </button>
+                </div>
+                
+                <div class="w-full md:w-1/2 h-80 md:h-auto bg-zinc-900 overflow-hidden relative border-l border-primary/10 z-10 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-1000 cursor-pointer">
+                    <div class="absolute inset-0 bg-cover bg-center opacity-40 scale-110 hover:scale-100 transition-transform duration-[20s]" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBa9h4pYhJCoi4kFQPuJwJpEqvMiBgfOk0LHsFpNUA0W0cRpmHENnMIvHtZkVUuaoVqr2mLuFFxW-70JW0WgdVcNe3bQBMEDD3u4s-bgN3owIdmG4vFl0atj_58UcRWphL1EpOtfhFprx3CoOQIsN0Rxax7rlxvMRqGhBTMtvQZKSwHaMbVq1gxGwa5UVSIdeox37-GDv0I2jIyJLfajrpygarhHduku6e0Ob6R-vI3_hkDjID43O240xDyniofoFgDFtBkyqC3xjg');"></div>
+                    <div class="relative z-20 bg-black/50 backdrop-blur-md px-8 py-4 border border-primary/50 flex items-center gap-3 hover:bg-primary/20 transition-colors">
+                        <span class="material-symbols-outlined text-xl text-primary animate-pulse">map</span>
+                        <span class="text-sm uppercase tracking-[0.3em] text-white font-bold">View Map</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-16 px-6 border-t border-primary/10 text-center flex flex-col gap-8 items-center">
+        <h2 class="text-primary text-2xl font-black tracking-[0.5em] uppercase">Huá Yàn</h2>
+        <div class="flex gap-8 text-slate-400 text-xs md:text-sm tracking-widest uppercase font-bold">
+            <a href="#" class="hover:text-primary transition-colors">Instagram</a>
+            <a href="#" class="hover:text-primary transition-colors">Facebook</a>
+            <a href="#" class="hover:text-primary transition-colors">Contact</a>
+            <a href="#" class="hover:text-primary transition-colors">Legal</a>
+        </div>
+        <div class="w-24 h-[1px] bg-slate-800"></div>
+        <p class="text-[10px] text-slate-600 tracking-widest uppercase">© 2026 Huá Yàn Gastronomy. All rights reserved. Designed via Stitch MCP.</p>
+        <div class="h-20 md:hidden"></div> <!-- Spacer for mobile nav -->
+    </footer>
+
+    <!-- Bottom Navigation Bar (Mobile) -->
+    <div class="fixed bottom-0 left-0 right-0 z-50 md:hidden pb-safe">
+        <div class="flex gap-2 border-t border-primary/20 bg-background-dark/95 backdrop-blur-xl px-4 pb-6 pt-3 shadow-[0_-5px_20px_rgba(0,0,0,0.8)]">
+            <a class="flex flex-1 flex-col items-center justify-end gap-1 text-primary hover:text-primary/80 transition-colors group" href="#">
+                <span class="material-symbols-outlined text-[24px] group-hover:-translate-y-1 transition-transform" style="font-variation-settings: 'FILL' 1">home</span>
+                <span class="text-[9px] uppercase tracking-widest font-bold">Home</span>
+            </a>
+            <a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-500 hover:text-primary transition-colors group" href="#menu">
+                <span class="material-symbols-outlined text-[24px] group-hover:-translate-y-1 transition-transform">restaurant_menu</span>
+                <span class="text-[9px] uppercase tracking-widest font-bold">Menu</span>
+            </a>
+            <a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-500 hover:text-primary transition-colors group" href="#location">
+                <span class="material-symbols-outlined text-[24px] group-hover:-translate-y-1 transition-transform">map</span>
+                <span class="text-[9px] uppercase tracking-widest font-bold">Location</span>
+            </a>
+            <a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-500 hover:text-primary transition-colors group" href="#">
+                <span class="material-symbols-outlined text-[24px] group-hover:-translate-y-1 transition-transform">calendar_month</span>
+                <span class="text-[9px] uppercase tracking-widest font-bold">Reserve</span>
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
