@@ -73,23 +73,27 @@
     <!-- Header -->
     <header id="main-header"
         class="fixed w-full z-50 transition-all duration-500 glass-header py-4 px-6 md:px-12 flex justify-between items-center">
-        <!-- Lang Switcher -->
-        <div class="flex items-center gap-6 relative group w-24">
-            <button
-                class="text-[10px] tracking-[0.2em] uppercase font-bold text-white hover:text-mitiko-gold transition-colors flex items-center gap-1">
-                <span id="current-lang">ES</span>
-                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                </svg>
-            </button>
+        <!-- Language Switcher -->
+        <div class="relative group cursor-pointer z-50 py-4 h-full flex items-center">
+            <div class="flex items-center gap-1">
+                <span id="current-lang" class="hover:text-mitiko-gold transition-colors">ES</span>
+                <span class="text-[8px] mt-0.5 text-mitiko-gold">▼</span>
+            </div>
+            <!-- Dropdown -->
             <div
-                class="absolute top-full left-0 mt-4 pt-2 hidden group-hover:flex flex-col bg-[#0b1c2c]/95 backdrop-blur-md border border-mitiko-gold/20 rounded-sm shadow-2xl overflow-hidden before:content-[''] before:absolute before:top-[-10px] before:left-0 before:w-full before:h-[10px] before:bg-transparent">
-                <button onclick="setLanguage('es')"
-                    class="text-[10px] tracking-[0.2em] font-bold text-left px-6 py-3 hover:bg-mitiko-gold hover:text-[#0b1c2c] transition-colors text-white">ES</button>
-                <button onclick="setLanguage('en')"
-                    class="text-[10px] tracking-[0.2em] font-bold text-left px-6 py-3 hover:bg-mitiko-gold hover:text-[#0b1c2c] transition-colors text-white">EN</button>
-                <button onclick="setLanguage('zh')"
-                    class="text-[10px] tracking-[0.2em] font-bold text-left px-6 py-3 hover:bg-mitiko-gold hover:text-[#0b1c2c] transition-colors text-white">ZH</button>
+                class="absolute top-full right-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top pointer-events-none group-hover:pointer-events-auto">
+                <div
+                    class="bg-[#0b1c2c]/95 backdrop-blur-md border border-mitiko-gold/20 min-w-[100px] flex flex-col shadow-2xl z-50">
+                    <button
+                        class="lang-btn px-4 py-3 text-left hover:text-mitiko-gold hover:bg-white/5 transition-colors w-full uppercase"
+                        data-lang="en">EN</button>
+                    <button
+                        class="lang-btn px-4 py-3 text-left hover:text-mitiko-gold hover:bg-white/5 transition-colors w-full uppercase"
+                        data-lang="es">ES</button>
+                    <button
+                        class="lang-btn px-4 py-3 text-left hover:text-mitiko-gold hover:bg-white/5 transition-colors w-full uppercase"
+                        data-lang="zh">ZH</button>
+                </div>
             </div>
         </div>
 
@@ -110,7 +114,7 @@
 
         <!-- Right: Desktop Reserve -->
         <div class="hidden md:flex items-center justify-end w-24">
-            <a href="index.html"
+            <a href="index.html" data-i18n="nav-volver"
                 class="text-[10px] tracking-[0.2em] font-bold text-mitiko-gold hover:text-white transition-colors border-b border-transparent hover:border-white">VOLVER</a>
         </div>
     </header>
@@ -120,7 +124,7 @@
         class="fixed inset-0 z-40 bg-[#0b1c2c] transform -translate-y-full transition-transform duration-500 ease-in-out md:hidden flex flex-col justify-start items-center pt-24">
         <div
             class="flex flex-col space-y-8 mt-16 px-6 text-[11px] tracking-[0.2em] font-medium uppercase text-center w-full">
-            <a href="index.html"
+            <a href="index.html" data-i18n="nav-inicio"
                 class="hover:text-mitiko-gold transition-colors block border-b border-mitiko-gold/20 pb-4 text-white">Inicio</a>
             <a href="#entrantes" data-i18n="carta-entrantes"
                 class="hover:text-mitiko-gold transition-colors block border-b border-mitiko-gold/20 pb-4 text-mitiko-gold"
@@ -373,7 +377,8 @@
                 class="h-12 w-auto object-contain mx-auto opacity-70 hover:opacity-100 transition-opacity"
                 alt="TorreYan Logo">
         </a>
-        <p class="text-[10px] text-[#8c9bab]/60 uppercase tracking-widest">&copy; 2026 TorreYan 华宴. Todos los derechos
+        <p data-i18n="footer-copyright" class="text-[10px] text-[#8c9bab]/60 uppercase tracking-widest">&copy; 2026
+            TorreYan 华宴. Todos los derechos
             reservados.</p>
     </footer>
 
@@ -390,6 +395,12 @@
 
             if (savedLang) {
                 langCode = savedLang;
+            } else {
+                let sysLang = navigator.language || navigator.userLanguage;
+                let sysLangPrefix = sysLang.split('-')[0].toLowerCase();
+                if (['en', 'es', 'zh'].includes(sysLangPrefix)) {
+                    langCode = sysLangPrefix;
+                }
             }
 
             setLanguage(langCode);
@@ -414,6 +425,15 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             initLanguage();
+
+            // Bind click events to lang buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    setLanguage(e.target.getAttribute('data-lang'));
+                    // Force unfocus to hide dropdown on mobile/touch
+                    e.target.blur();
+                });
+            });
         });
     </script>
 </body>

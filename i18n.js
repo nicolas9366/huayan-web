@@ -6,11 +6,11 @@ const i18n = {
         'nav-entorno': 'El Entorno',
         'nav-eventos': 'Eventos',
         'btn-reservar': 'RESERVAR',
-        
+
         // Hero
         'hero-descubre': '¡Descubre el<br>nuevo TorreYan',
         'hero-sub': 'Una cocina tradicional china en constante evolución, en el corazón de Zaragoza.',
-        
+
         // About
         'about-title1': 'Reinventando la',
         'about-title2': 'cocina oriental',
@@ -18,7 +18,7 @@ const i18n = {
         'about-p2': 'Desde pequeños, empezamos a cocinar usando ingredientes locales, desarrollando una pasión por la experimentación culinaria, pero manteniendo intacta el alma de la receta original.',
         'about-p3': 'Valoramos la riqueza de la gastronomía asiática y, junto a las técnicas modernas, buscamos mostrar su versatilidad y potencial infinito para la innovación.',
         'about-welcome': '¡Bienvenido a las cocinas de TorreYan!',
-        
+
         // Tradition
         'trad-title1': 'Tradición',
         'trad-title2': 'milenaria.',
@@ -26,29 +26,44 @@ const i18n = {
         'trad-title4': 'modernas.',
         'trad-p': 'Nuestro compromiso es ofrecer una experiencia culinaria inolvidable, fusionando los sabores asiáticos más auténticos con un toque de innovación, en un ambiente que respira exclusividad.',
         'trad-btn': 'DESCUBRE LA CARTA',
-        
+
         // Environment (New)
         'env-title1': 'Nuestro',
         'env-title2': 'Entorno',
         'env-sub': 'Un espacio diseñado para la elegancia, la privacidad y un confort absoluto.',
-        
-        // Footer
-        'footer-address': 'Centro Comercial Torre Outlet<br>Av. de Logroño, km 6<br>50011 Zaragoza, España',
+
+        // Footer Simple text
+        'footer-address1': 'Centro Comercial Torre Outlet',
+        'footer-address2': 'Av. de Logroño, km 6',
+        'footer-address3': '50011 Zaragoza, España',
+        'footer-contact-title': 'Contacto',
+        'footer-work-with-us': 'Trabaja con nosotros',
+
         'footer-hours-title': 'Horario',
-        'footer-hours': 'Lunes - Domingo<br>13:00 - 16:30<br>20:00 - 23:30',
-        'footer-social': 'Síguenos',
-        'footer-legal': 'Aviso legal',
-        'footer-privacy': 'Política de privacidad',
-        'footer-cookies': 'Política de cookies',
-        
+        'footer-hours-days': 'Lunes - Domingo',
+        'footer-hours-lunch': '13:00 - 16:30',
+        'footer-hours-dinner': '20:00 - 23:30',
+        'footer-parking': 'Aparcamiento gratuito.',
+
+        'footer-legal-title': 'Legal',
+        'footer-legal-notice': 'Aviso Legal',
+        'footer-privacy': 'Privacidad',
+        'footer-cookies': 'Cookies',
+        'footer-terms': 'Términos',
+
+        'footer-copyright': '&copy; 2026 TorreYan 华宴. Todos los derechos reservados.',
+        'footer-design': 'Diseño inspirado en Mítiko',
+
         // Menu Page (Carta)
+        'nav-inicio': 'Inicio',
+        'nav-volver': 'VOLVER',
         'carta-title': 'Nuestra Carta',
         'carta-entrantes': 'Entrantes',
         'carta-recomendaciones': 'Recomendaciones',
         'carta-mariscos': 'Mariscos',
         'carta-carnes': 'Carnes',
         'carta-verduras': 'Verduras',
-        
+
         // Dishes Category 1: Entrantes
         'dish-es-1-name': 'Ensalada de Okra y Oreja de Madera',
         'dish-es-1-desc': 'Fresco y crujiente, aliñado con vinagreta suave.',
@@ -62,7 +77,7 @@ const i18n = {
         'dish-es-5-desc': 'Finas láminas de cerdo cocido servidas con salsa de ajo intenso.',
         'dish-es-6-name': 'Gambas Zafiro',
         'dish-es-6-desc': 'Crujientes y doradas, servidas con una salsa especial dulce y picante.',
-        
+
         // Dishes Category 2: Recomendaciones
         'dish-re-1-name': 'Pescado Asado Especialidad de la Casa',
         'dish-re-1-desc': 'Pescado entero asado y estofado con verduras y especias.',
@@ -84,11 +99,11 @@ const i18n = {
         'nav-entorno': 'The Environment',
         'nav-eventos': 'Events',
         'btn-reservar': 'RESERVE',
-        
+
         // Hero
         'hero-descubre': 'Discover the<br>new TorreYan',
         'hero-sub': 'A traditional Chinese cuisine in constant evolution, in the heart of Zaragoza.',
-        
+
         // About
         'about-title1': 'Reinventing',
         'about-title2': 'oriental cuisine',
@@ -104,29 +119,44 @@ const i18n = {
         'trad-title4': 'techniques.',
         'trad-p': 'Our commitment is to offer an unforgettable culinary experience, fusing the most authentic Asian flavors with a touch of innovation, in an environment that breathes exclusivity.',
         'trad-btn': 'DISCOVER THE MENU',
-        
+
         // Environment (New)
         'env-title1': 'Our',
         'env-title2': 'Environment',
         'env-sub': 'A space designed for elegance, privacy, and absolute comfort.',
-        
-        // Footer
-        'footer-address': 'Torre Outlet Shopping Center<br>Av. de Logroño, km 6<br>50011 Zaragoza, Spain',
+
+        // Footer Simple text
+        'footer-address1': 'Torre Outlet Shopping Center',
+        'footer-address2': 'Av. de Logroño, km 6',
+        'footer-address3': '50011 Zaragoza, Spain',
+        'footer-contact-title': 'Contact',
+        'footer-work-with-us': 'Work with us',
+
         'footer-hours-title': 'Opening Hours',
-        'footer-hours': 'Monday - Sunday<br>1:00 PM - 4:30 PM<br>8:00 PM - 11:30 PM',
-        'footer-social': 'Follow us',
-        'footer-legal': 'Legal notice',
-        'footer-privacy': 'Privacy policy',
-        'footer-cookies': 'Cookies policy',
-        
+        'footer-hours-days': 'Monday - Sunday',
+        'footer-hours-lunch': '1:00 PM - 4:30 PM',
+        'footer-hours-dinner': '8:00 PM - 11:30 PM',
+        'footer-parking': 'Free parking.',
+
+        'footer-legal-title': 'Legal',
+        'footer-legal-notice': 'Legal Notice',
+        'footer-privacy': 'Privacy',
+        'footer-cookies': 'Cookies',
+        'footer-terms': 'Terms',
+
+        'footer-copyright': '&copy; 2026 TorreYan 华宴. All rights reserved.',
+        'footer-design': 'Design inspired by Mítiko',
+
         // Menu Page (Carta)
+        'nav-inicio': 'Home',
+        'nav-volver': 'BACK',
         'carta-title': 'Our Menu',
         'carta-entrantes': 'Starters',
         'carta-recomendaciones': 'Chef\'s Recommendations',
         'carta-mariscos': 'Seafood',
         'carta-carnes': 'Meats',
         'carta-verduras': 'Vegetables',
-        
+
         // Dishes - Starters
         'dish-es-1-name': 'Okra and Wood Ear Mushroom Salad',
         'dish-es-1-desc': 'Fresh and crispy, dressed with a mild vinaigrette.',
@@ -140,7 +170,7 @@ const i18n = {
         'dish-es-5-desc': 'Thin slices of cooked pork served with intense garlic sauce.',
         'dish-es-6-name': 'Sapphire Prawns',
         'dish-es-6-desc': 'Crispy golden prawns served with a special sweet and spicy sauce.',
-        
+
         // Dishes - Recs
         'dish-re-1-name': 'House Special Grilled Fish',
         'dish-re-1-desc': 'Whole grilled fish stewed with vegetables and spices.',
@@ -162,11 +192,11 @@ const i18n = {
         'nav-entorno': '用餐环境',
         'nav-eventos': '活动',
         'btn-reservar': '预定',
-        
+
         // Hero
         'hero-descubre': '探索全新的<br>TorreYan',
         'hero-sub': '位于萨拉戈萨中心，不断演进的传统中国美食。',
-        
+
         // About
         'about-title1': '重塑',
         'about-title2': '东方美食',
@@ -182,29 +212,44 @@ const i18n = {
         'trad-title4': '技术',
         'trad-p': '我们的承诺是提供令人难忘的烹饪体验，将最正宗的亚洲风味与创新融为一体，置身于充满专属感的环境中。',
         'trad-btn': '查看完整菜单',
-        
+
         // Environment (New)
         'env-title1': '我们的',
         'env-title2': '环境',
         'env-sub': '专为优雅、私密和绝对舒适而设计的空间。',
-        
-        // Footer
-        'footer-address': 'Centro Comercial Torre Outlet<br>Av. de Logroño, km 6<br>50011 萨拉戈萨, 西班牙',
+
+        // Footer Simple text
+        'footer-address1': 'Torre Outlet 购物中心',
+        'footer-address2': 'Av. de Logroño, 6公里处',
+        'footer-address3': '50011 萨拉戈萨, 西班牙',
+        'footer-contact-title': '联系方式',
+        'footer-work-with-us': '加入我们',
+
         'footer-hours-title': '营业时间',
-        'footer-hours': '周一 至 周日<br>13:00 - 16:30<br>20:00 - 23:30',
-        'footer-social': '关注我们',
-        'footer-legal': '法律声明',
-        'footer-privacy': '隐私政策',
-        'footer-cookies': 'Cookies政策',
-        
+        'footer-hours-days': '周一 至 周日',
+        'footer-hours-lunch': '13:00 - 16:30',
+        'footer-hours-dinner': '20:00 - 23:30',
+        'footer-parking': '免费停车。',
+
+        'footer-legal-title': '法律条款',
+        'footer-legal-notice': '法律声明',
+        'footer-privacy': '隐私条款',
+        'footer-cookies': 'Cookie政策',
+        'footer-terms': '服务条款',
+
+        'footer-copyright': '&copy; 2026 TorreYan 华宴. 保留所有权利。',
+        'footer-design': '设计灵感来自 Mítiko',
+
         // Menu Page (Carta)
+        'nav-inicio': '首页',
+        'nav-volver': '返回',
         'carta-title': '我们的菜单',
         'carta-entrantes': '前菜',
         'carta-recomendaciones': '主推菜品',
         'carta-mariscos': '海鲜类',
         'carta-carnes': '肉类',
         'carta-verduras': '蔬菜',
-        
+
         // Dishes - Starters
         'dish-es-1-name': '秋葵拌木耳',
         'dish-es-1-desc': '清新爽脆，特调油醋汁拌匀即可。',
@@ -218,7 +263,7 @@ const i18n = {
         'dish-es-5-desc': '肥而不腻的白肉片，浇上浓郁蒜泥汁。',
         'dish-es-6-name': '蓝宝石虾',
         'dish-es-6-desc': '外酥里嫩的炸虾球，搭配特制酸甜酱。',
-        
+
         // Dishes - Recs
         'dish-re-1-name': '招牌烤鱼',
         'dish-re-1-desc': '整条鲜鱼炭火烤制，配以精选时蔬炖煮，香味四溢。',

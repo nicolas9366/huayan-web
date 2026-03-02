@@ -74,11 +74,12 @@
         class="fixed w-full z-50 top-0 transition-all duration-300 py-4 px-6 md:px-12 flex justify-between items-center"
         id="navbar">
         <nav class="hidden md:flex gap-8 text-[11px] tracking-[0.2em] uppercase font-medium">
-            <a href="#carta" class="hover:text-mitiko-gold transition-colors flex items-center gap-1">Carta <span
-                    class="text-mitiko-gold mt-1 text-[8px]">▼</span></a>
-            <a href="#sobre" class="hover:text-mitiko-gold transition-colors flex items-center gap-1">Sobre TorreYan
-                <span class="text-mitiko-gold mt-1 text-[8px]">▼</span></a>
-            <a href="#eventos" class="hover:text-mitiko-gold transition-colors">Eventos</a>
+            <a href="carta.html" data-i18n="nav-carta"
+                class="hover:text-mitiko-gold transition-colors flex items-center gap-1">Carta</a>
+            <a href="#sobre" data-i18n="nav-sobre"
+                class="hover:text-mitiko-gold transition-colors flex items-center gap-1">Sobre TorreYan</a>
+            <a href="#entorno" data-i18n="nav-entorno"
+                class="hover:text-mitiko-gold transition-colors flex items-center gap-1">El Entorno</a>
         </nav>
 
         <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center">
@@ -95,23 +96,26 @@
         <div
             class="hidden md:flex items-center justify-end gap-x-6 text-[11px] tracking-[0.2em] uppercase font-medium min-w-[300px]">
             <!-- Language Switcher -->
-            <div class="relative group cursor-pointer z-50 py-4">
+            <div class="relative group cursor-pointer z-50 py-4 h-full flex items-center">
                 <div class="flex items-center gap-1">
                     <span id="current-lang" class="hover:text-mitiko-gold transition-colors">ES</span>
                     <span class="text-[8px] mt-0.5 text-mitiko-gold">▼</span>
                 </div>
-                <!-- Dropdown (added pt-4 to bridge the gap, and an invisible overlay is created by the parent's py-4) -->
+                <!-- Dropdown -->
                 <div
-                    class="absolute top-full right-0 bg-[#0b1c2c]/95 backdrop-blur-md border border-mitiko-gold/20 py-2 min-w-[100px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top shadow-2xl flex flex-col pointer-events-none group-hover:pointer-events-auto">
-                    <button
-                        class="lang-btn px-4 py-3 text-left hover:text-mitiko-gold hover:bg-white/5 transition-colors w-full uppercase"
-                        data-lang="en">EN</button>
-                    <button
-                        class="lang-btn px-4 py-3 text-left hover:text-mitiko-gold hover:bg-white/5 transition-colors w-full uppercase"
-                        data-lang="es">ES</button>
-                    <button
-                        class="lang-btn px-4 py-3 text-left hover:text-mitiko-gold hover:bg-white/5 transition-colors w-full uppercase"
-                        data-lang="zh">ZH</button>
+                    class="absolute top-full right-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top pointer-events-none group-hover:pointer-events-auto">
+                    <div
+                        class="bg-[#0b1c2c]/95 backdrop-blur-md border border-mitiko-gold/20 min-w-[100px] flex flex-col shadow-2xl">
+                        <button
+                            class="lang-btn px-4 py-3 text-left hover:text-mitiko-gold hover:bg-white/5 transition-colors w-full uppercase"
+                            data-lang="en">EN</button>
+                        <button
+                            class="lang-btn px-4 py-3 text-left hover:text-mitiko-gold hover:bg-white/5 transition-colors w-full uppercase"
+                            data-lang="es">ES</button>
+                        <button
+                            class="lang-btn px-4 py-3 text-left hover:text-mitiko-gold hover:bg-white/5 transition-colors w-full uppercase"
+                            data-lang="zh">ZH</button>
+                    </div>
                 </div>
             </div>
 
