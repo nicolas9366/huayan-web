@@ -93,7 +93,25 @@
         </div>
 
         <div
-            class="hidden md:flex items-center justify-end gap-8 text-[11px] tracking-[0.2em] uppercase font-medium min-w-[300px]">
+            class="hidden md:flex items-center justify-end gap-x-6 text-[11px] tracking-[0.2em] uppercase font-medium min-w-[300px]">
+            <!-- Language Switcher -->
+            <div class="relative group cursor-pointer flex items-center gap-1 z-50">
+                <span id="current-lang" class="hover:text-mitiko-gold transition-colors">ES</span>
+                <span class="text-[8px] mt-0.5 text-mitiko-gold">▼</span>
+                <div
+                    class="absolute top-full right-0 mt-4 bg-[#0b1c2c]/95 backdrop-blur-md border border-mitiko-gold/20 py-2 min-w-[100px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top shadow-2xl flex flex-col pointer-events-none group-hover:pointer-events-auto">
+                    <button
+                        class="lang-btn px-4 py-3 text-left hover:text-mitiko-gold hover:bg-white/5 transition-colors w-full uppercase"
+                        data-lang="en">EN - English</button>
+                    <button
+                        class="lang-btn px-4 py-3 text-left hover:text-mitiko-gold hover:bg-white/5 transition-colors w-full uppercase"
+                        data-lang="es">ES - Español</button>
+                    <button
+                        class="lang-btn px-4 py-3 text-left hover:text-mitiko-gold hover:bg-white/5 transition-colors w-full uppercase"
+                        data-lang="zh">ZH - 中文</button>
+                </div>
+            </div>
+
             <a href="tel:976123456" class="hover:text-mitiko-gold transition-colors flex items-center gap-2">
                 <svg class="w-4 h-4 text-mitiko-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -102,7 +120,7 @@
                 </svg>
                 976 12 34 56
             </a>
-            <a href="#reservar"
+            <a href="#reservar" data-i18n="btn-reservar"
                 class="bg-[#d2a679] text-[#2c1d11] px-8 py-3 rounded-full font-bold hover:bg-white hover:text-[#d2a679] transition-all transform hover:scale-105 shadow-[0_0_15px_rgba(203,163,130,0.3)]">RESERVAR</a>
         </div>
 
@@ -117,27 +135,28 @@
     <!-- Hero Section -->
     <section class="relative h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <!-- Background Image -->
-            <img src="./437952A2-16FC-4BD1-BFA4-3047E09F5CD0_1_105_c.jpeg"
-                class="w-full h-full object-cover opacity-[0.85] scale-105 transform origin-center animate-[pulse_20s_ease-in-out_infinite]"
-                alt="TorreYan Interior">
-            <div class="absolute inset-0 bg-gradient-to-t from-[#0b1c2c] via-[#0b1c2c]/40 to-[#0b1c2c]/20"></div>
+            <!-- Background Video -->
+            <video autoplay loop muted playsinline
+                class="w-full h-full object-cover opacity-[0.70] scale-105 transform origin-center">
+                <source src="https://www.pexels.com/zh-cn/download/video/3209799/" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0b1c2c] via-[#0b1c2c]/50 to-[#0b1c2c]/30"></div>
         </div>
 
         <div class="relative z-10 flex flex-col items-center text-center mt-32 px-4 max-w-5xl mx-auto w-full">
-            <img src="./torreyan_logo_gold.png"
-                class="h-48 md:h-64 w-auto mb-10 opacity-95 drop-shadow-[0_0_20px_rgba(203,163,130,0.4)] object-contain"
+            <img src="./torreyan_logo_new.png"
+                class="h-28 md:h-36 lg:h-44 w-auto mb-10 opacity-95 drop-shadow-[0_0_20px_rgba(203,163,130,0.6)] object-contain"
                 alt="TorreYan Gold Logo">
             <h2
                 class="text-5xl md:text-[5rem] lg:text-[6rem] leading-[1.1] font-serif font-bold mb-6 drop-shadow-xl text-white">
-                ¡Descubre el<br>nuevo TorreYan <span
+                <span data-i18n="hero-descubre">¡Descubre el<br>nuevo TorreYan</span> <span
                     class="font-kaiti text-mitiko-gold text-6xl md:text-[6rem] lg:text-[7rem] px-2 font-normal italic transform -rotate-6 inline-block">华宴</span>!
             </h2>
-            <p
+            <p data-i18n="hero-sub"
                 class="text-base md:text-xl font-medium text-white/90 max-w-2xl mt-6 tracking-wide drop-shadow-md mx-auto">
                 Una cocina tradicional china en constante evolución, en el corazón de Zaragoza.
             </p>
-            <a href="#reservar"
+            <a href="#reservar" data-i18n="btn-reservar"
                 class="mt-14 bg-[#d2a679] text-[#2c1d11] px-12 py-4 rounded-full text-sm font-bold tracking-[0.2em] hover:bg-white transition-colors shadow-2xl hover:scale-105 transform duration-300">
                 RESERVAR
             </a>
@@ -263,8 +282,8 @@
 
             <!-- Col 1: Logo & Address -->
             <div class="md:col-span-4 flex flex-col gap-6 pr-8">
-                <img src="./torreyan_logo_gold.png"
-                    class="h-28 w-auto object-contain object-left mb-2 opacity-90 drop-shadow-[0_0_10px_rgba(203,163,130,0.2)]"
+                <img src="./torreyan_logo_new.png"
+                    class="h-16 w-auto object-contain object-left mb-2 opacity-90 drop-shadow-[0_0_10px_rgba(203,163,130,0.4)]"
                     alt="TorreYan Logo Footer">
                 <p>Centro Comercial Torre Outlet<br>Av. de Logroño, km 6<br>50011 Zaragoza, España</p>
                 <div class="flex gap-6 mt-2 text-white">
@@ -314,6 +333,70 @@
     </footer>
 
     <script>
+        // Language configuration
+        const i18n = {
+            'es': {
+                'nav-carta': 'Carta',
+                'nav-sobre': 'Sobre TorreYan',
+                'nav-eventos': 'Eventos',
+                'btn-reservar': 'RESERVAR',
+                'hero-descubre': '¡Descubre el<br>nuevo TorreYan',
+                'hero-sub': 'Una cocina tradicional china en constante evolución, en el corazón de Zaragoza.'
+            },
+            'en': {
+                'nav-carta': 'Menu',
+                'nav-sobre': 'About TorreYan',
+                'nav-eventos': 'Events',
+                'btn-reservar': 'RESERVE',
+                'hero-descubre': 'Discover the<br>new TorreYan',
+                'hero-sub': 'A traditional Chinese cuisine in constant evolution, in the heart of Zaragoza.'
+            },
+            'zh': {
+                'nav-carta': '菜单',
+                'nav-sobre': '关于华宴',
+                'nav-eventos': '活动',
+                'btn-reservar': '预定',
+                'hero-descubre': '探索全新的<br>TorreYan',
+                'hero-sub': '位于萨拉戈萨中心，不断演进的传统中国美食。'
+            }
+        };
+
+        function setLanguage(lang) {
+            document.getElementById('current-lang').innerText = lang.toUpperCase();
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[lang] && i18n[lang][key]) {
+                    el.innerHTML = i18n[lang][key];
+                }
+            });
+            // Update nav spacing for zh vs latin text
+            if (lang === 'zh') {
+                document.documentElement.style.setProperty('--tracking', 'normal');
+            } else {
+                document.documentElement.style.setProperty('--tracking', '0.2em');
+            }
+        }
+
+        // Initialize Language to device default
+        document.addEventListener('DOMContentLoaded', () => {
+            let sysLang = navigator.language || navigator.userLanguage;
+            let langCode = sysLang.split('-')[0].toLowerCase();
+
+            // Fallback to ES if not English or Chinese
+            if (!['en', 'es', 'zh'].includes(langCode)) {
+                langCode = 'es';
+            }
+
+            setLanguage(langCode);
+
+            // Bind click events to lang buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    setLanguage(e.target.getAttribute('data-lang'));
+                });
+            });
+        });
+
         // Transparent to solid/glass header on scroll
         const header = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
