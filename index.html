@@ -8,6 +8,8 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;900&display=swap"
         rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
@@ -25,7 +27,8 @@
                         "zinc-custom": "#3f3f46",
                     },
                     fontFamily: {
-                        "display": ["Work Sans", "sans-serif"]
+                        "display": ["Work Sans", "sans-serif"],
+                        "kaiti": ["Zhi Mang Xing", "cursive"]
                     },
                     borderRadius: {
                         "DEFAULT": "0.125rem",
@@ -89,7 +92,7 @@
                         <h1 class="text-primary text-2xl font-black leading-tight tracking-widest font-serif">
                             TorreYan
                         </h1>
-                        <span class="text-primary text-xl font-bold tracking-[0.3em]">华宴</span>
+                        <span class="text-primary text-4xl mt-1 tracking-widest font-kaiti">华宴</span>
                     </div>
                     <div class="hidden md:flex flex-col justify-center ml-2 border-l border-primary/50 pl-2">
                         <span class="text-primary/80 text-xs font-serif tracking-wider">Restaurante chino</span>
@@ -113,7 +116,8 @@
             class="fixed inset-y-0 left-0 z-[60] w-72 bg-black/95 backdrop-blur-xl border-r border-primary/20 transform -translate-x-full transition-transform duration-300 ease-in-out">
             <div class="flex flex-col h-full p-6">
                 <div class="flex justify-between items-center border-b border-primary/20 pb-4 mb-8">
-                    <h2 class="text-primary text-xl font-serif italic tracking-widest">TorreYan 华宴</h2>
+                    <h2 class="text-primary text-xl font-serif italic tracking-widest flex items-center gap-2">TorreYan
+                        <span class="font-kaiti text-3xl">华宴</span></h2>
                     <button onclick="toggleSidebar()" class="text-slate-400 hover:text-primary transition-colors">
                         <span class="material-symbols-outlined text-2xl">close</span>
                     </button>
@@ -183,31 +187,25 @@
             <div id="intro" class="w-full bg-black">
                 <div
                     class="relative flex min-h-[85vh] flex-col items-center justify-center p-6 text-center overflow-hidden">
-                    <!-- Responsive Background Image (Dragon + Zaragoza) -->
-                    <div class="absolute inset-0 z-0">
-                        <!-- Object-cover ensures the dragon and church blend well on both mobile (cropping center) and desktop (full width) -->
-                        <img class="h-full w-full object-cover object-center md:object-[center_30%] scale-105"
-                            alt="TorreYan background featuring dragon and Zaragoza" src="./torreyan_bg.png" />
+                    <!-- Hero Logo Background Image -->
+                    <div class="absolute inset-0 z-0 flex items-center justify-center bg-zinc-950">
+                        <!-- Using object-contain so the logo naturally fits into the screen without cropped text -->
+                        <img class="w-full h-full max-w-[1200px] object-contain opacity-80 p-8" alt="TorreYan Logo text"
+                            src="./torreyan_logo.png" />
                         <div
-                            class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/40 to-background-dark/80">
+                            class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/20 to-transparent pointer-events-none">
                         </div>
                     </div>
                     <!-- Hero Content -->
-                    <div class="relative z-10 flex flex-col gap-8 w-full max-w-4xl mt-12 md:mt-24 pointer-events-none">
+                    <div
+                        class="relative z-10 flex flex-col gap-8 w-full max-w-4xl mt-auto pb-16 md:pb-24 pointer-events-none">
                         <div class="flex flex-col gap-4 drop-shadow-2xl">
                             <span
                                 class="text-primary text-xs md:text-sm font-bold tracking-[0.4em] uppercase text-shadow-sm">Zaragoza
                                 • Spain</span>
-                            <h2
-                                class="text-slate-100 text-6xl md:text-8xl lg:text-[10rem] font-black leading-tight tracking-tight drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">
-                                华宴<br /><span
-                                    class="text-5xl md:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-primary via-yellow-200 to-primary">TorreYan</span>
-                            </h2>
-                            <h3
-                                class="text-primary/80 text-xl font-serif tracking-[0.2em] mt-2 border-t border-primary/30 pt-2 inline-block">
-                                Restaurante chino</h3>
+                            <!-- Logo Text Removed as requested -->
                             <p
-                                class="text-slate-300 text-sm md:text-base font-light leading-relaxed tracking-wide px-4 drop-shadow-md mt-4">
+                                class="text-slate-300 text-sm md:text-base font-light leading-relaxed tracking-wide px-4 drop-shadow-md mt-4 max-w-2xl mx-auto">
                                 Elevated Asian Gastronomy where tradition meets modern luxury in an immersive sensory
                                 journey. Experience the minimalist aesthetics inspired by mitiko.
                             </p>
@@ -241,39 +239,42 @@
                 </div>
             </nav>
 
-            <!-- Featured Section (An Exquisite Journey) -->
+            <!-- Dining Environment Gallery -->
             <section class="py-24 px-6 bg-background-dark flex flex-col items-center gap-12">
-                <div class="text-center flex flex-col gap-6">
-                    <h2 class="text-slate-100 text-4xl font-light tracking-wide uppercase">An <span
-                            class="text-primary italic font-serif lowercase text-5xl">Exquisite</span> Journey</h2>
-                    <div class="w-16 h-[1px] bg-primary mx-auto"></div>
+                <div class="text-center flex flex-col gap-4">
+                    <h3 class="text-primary text-sm font-bold uppercase tracking-[0.5em] mb-2">Our Space</h3>
+                    <h2
+                        class="text-slate-100 text-5xl font-light tracking-wide uppercase flex items-center justify-center gap-4">
+                        用餐<span class="text-primary font-kaiti leading-none text-7xl lowercase">环境</span></h2>
+                    <div class="w-16 h-[1px] bg-primary mx-auto mt-4"></div>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 w-full max-w-5xl">
-                    <div
-                        class="relative aspect-[4/5] md:aspect-[3/4] w-full overflow-hidden rounded-sm border border-primary/20 group">
-                        <img class="h-full w-full object-cover opacity-70 group-hover:scale-110 group-hover:opacity-100 transition-all duration-1000 saturate-150"
-                            alt="Modern luxury restaurant interior with gold accents"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmClhR2uOLCOxIyXtIDf6VlQKPAgwJZOs3k5goUv1_FslcRVdreas6Jjk2SRFARCB3mJImUtOCxaUQP07dhNwWF8jmrKvkOX3VOAISsLTRRjPjwog8rirUrpytjZj84luy7KF16q1FPYVNYcXu5M-8E_LnDXQ4pnE9c1lPdoCakn8QlVR3Wu3R7zI19rto4Zfam6_-FWwtinAgIo2QzqgFQ7OjsB0R49xRv1fOJ1_i7HgbRTvw08M2EmGV5fAC6cBI5EUCfv-NSIc" />
-                        <div
-                            class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-                            <h3 class="text-primary text-xl font-bold tracking-widest uppercase">The Ambience</h3>
-                            <p class="text-slate-300 text-sm mt-3 font-light">A curated space designed for intimacy and
-                                elegance, blending minimalist aesthetics with cultural depths.</p>
-                        </div>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 w-full max-w-[1400px]">
+                    <div class="md:col-span-2 md:row-span-2 overflow-hidden rounded border border-primary/20 group">
+                        <img class="w-full h-full object-cover opacity-85 group-hover:scale-105 group-hover:opacity-100 transition-all duration-[2s]"
+                            alt="TorreYan main dining hall" src="./437952A2-16FC-4BD1-BFA4-3047E09F5CD0_1_105_c.jpeg" />
                     </div>
-                    <!-- The Art of Dining Content -->
                     <div
-                        class="relative aspect-[4/5] md:aspect-[3/4] w-full overflow-hidden rounded-sm border border-primary/20 group">
-                        <img class="h-full w-full object-cover opacity-70 group-hover:scale-110 group-hover:opacity-100 transition-all duration-1000 saturate-150"
-                            alt="Luxury Asian dining table with dim lighting"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBa9h4pYhJCoi4kFQPuJwJpEqvMiBgfOk0LHsFpNUA0W0cRpmHENnMIvHtZkVUuaoVqr2mLuFFxW-70JW0WgdVcNe3bQBMEDD3u4s-bgN3owIdmG4vFl0atj_58UcRWphL1EpOtfhFprx3CoOQIsN0Rxax7rlxvMRqGhBTMtvQZKSwHaMbVq1gxGwa5UVSIdeox37-GDv0I2jIyJLfajrpygarhHduku6e0Ob6R-vI3_hkDjID43O240xDyniofoFgDFtBkyqC3xjg" />
-                        <div
-                            class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-                            <h3 class="text-primary text-xl font-bold tracking-widest uppercase">The Art of Dining</h3>
-                            <p class="text-slate-300 text-sm mt-3 font-light">Experience gastronomy redefined with every
-                                meticulous course, showcasing the pinnacle of culinary artistry.</p>
-                        </div>
+                        class="md:col-span-2 overflow-hidden rounded border border-primary/20 group aspect-[16/9] md:aspect-auto">
+                        <img class="w-full h-full object-cover opacity-85 group-hover:scale-105 group-hover:opacity-100 transition-all duration-[2s]"
+                            alt="TorreYan exquisite ceiling detail"
+                            src="./3815F6FF-D43E-4F59-9062-14F5CBE8BFE4_1_105_c.jpeg" />
                     </div>
+                    <div
+                        class="md:col-span-1 overflow-hidden rounded border border-primary/20 group aspect-square md:aspect-auto">
+                        <img class="w-full h-full object-cover opacity-85 group-hover:scale-105 group-hover:opacity-100 transition-all duration-[2s]"
+                            alt="TorreYan private dining room"
+                            src="./451B310C-DD54-4FF5-9272-B8D9D8CC61DD_4_5005_c.jpeg" />
+                    </div>
+                    <div
+                        class="md:col-span-1 overflow-hidden rounded border border-primary/20 group aspect-square md:aspect-auto">
+                        <img class="w-full h-full object-cover opacity-85 group-hover:scale-105 group-hover:opacity-100 transition-all duration-[2s]"
+                            alt="TorreYan karaoke room" src="./B5332BCC-10FA-48F9-8698-BCAB6F3E469D_4_5005_c.jpeg" />
+                    </div>
+                </div>
+                <!-- Fifth Image (Centred / Full Width) -->
+                <div class="w-full max-w-[1400px] overflow-hidden rounded border border-primary/20 group aspect-[21/9]">
+                    <img class="w-full h-full object-cover opacity-85 group-hover:scale-105 group-hover:opacity-100 transition-all duration-[2s]"
+                        alt="TorreYan luxury experience" src="./E63725F6-0747-40E8-A592-436C608BE08D_4_5005_c.jpeg" />
                 </div>
             </section>
 
@@ -348,8 +349,8 @@
                         </div>
                         <div>
                             <h3
-                                class="text-2xl md:text-3xl font-light uppercase tracking-widest mb-4 text-slate-100 font-serif text-primary">
-                                TorreYan 华宴</h3>
+                                class="text-2xl md:text-3xl font-light uppercase tracking-widest mb-4 text-slate-100 font-serif text-primary flex items-center justify-center md:justify-start gap-4">
+                                TorreYan <span class="font-kaiti text-4xl">华宴</span></h3>
                             <p class="text-base md:text-lg text-slate-400 leading-loose font-light tracking-wider mt-2">
                                 Torre Outlet, Av. de Logroño, km 6,<br />
                                 50011 Zaragoza<br />
@@ -384,7 +385,9 @@
             <div class="absolute inset-0 border-[1px] border-primary/20 m-4 pointer-events-none rounded-sm"></div>
             <img src="./torreyan_logo.png" alt="TorreYan Logo"
                 class="h-16 w-16 object-contain mix-blend-screen drop-shadow-[0_0_8px_rgba(230,144,25,0.8)]" />
-            <h2 class="text-primary text-2xl font-black tracking-[0.3em] uppercase">TorreYan 华宴</h2>
+            <h2
+                class="text-primary text-2xl font-black tracking-[0.3em] uppercase flex items-center justify-center gap-3">
+                TorreYan <span class="font-kaiti text-4xl">华宴</span></h2>
             <div class="flex gap-8 text-slate-400 text-xs md:text-sm tracking-widest uppercase font-bold z-10">
                 <a href="#" class="hover:text-primary transition-colors">Instagram</a>
                 <a href="#" class="hover:text-primary transition-colors">Facebook</a>
