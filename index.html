@@ -126,14 +126,42 @@
             <button onclick="openReservationModal()" data-i18n="btn-reservar"
                 class="bg-[#d2a679] text-[#2c1d11] px-8 py-3 rounded-full font-bold hover:bg-white hover:text-[#d2a679] transition-all transform hover:scale-105 shadow-[0_0_15px_rgba(203,163,130,0.3)]">RESERVAR</button>
         </div>
+    </header>
 
-        <button class="md:hidden text-mitiko-gold hover:text-white transition-colors">
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu"
+        class="fixed inset-0 z-40 bg-[#0b1c2c] transform -translate-y-full transition-transform duration-500 ease-in-out md:hidden flex flex-col justify-start items-center pt-24">
+        <button onclick="toggleMobileMenu()"
+            class="absolute top-4 right-4 text-mitiko-gold hover:text-white transition-colors">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12">
                 </path>
             </svg>
         </button>
-    </header>
+        <div class="flex flex-col space-y-8 mt-16 px-6 text-[11px] tracking-[0.2em] font-medium uppercase">
+            <a href="carta.html" data-i18n="nav-carta"
+                class="hover:text-mitiko-gold transition-colors block border-b border-mitiko-gold/20 pb-4">Carta</a>
+            <a href="index.html#sobre" data-i18n="nav-sobre"
+                class="hover:text-mitiko-gold transition-colors block border-b border-mitiko-gold/20 pb-4">Sobre
+                TorreYan</a>
+            <a href="index.html#entorno" data-i18n="nav-entorno"
+                class="hover:text-mitiko-gold transition-colors block border-b border-mitiko-gold/20 pb-4">El
+                Entorno</a>
+            <a href="#" data-i18n="nav-eventos"
+                class="hover:text-mitiko-gold transition-colors block border-b border-mitiko-gold/20 pb-4">Eventos</a>
+
+            <a href="tel:976123456" class="hover:text-mitiko-gold transition-colors flex items-center gap-2 mt-8">
+                <svg class="w-4 h-4 text-mitiko-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                    </path>
+                </svg>
+                976 12 34 56
+            </a>
+            <button onclick="openReservationModal(); toggleMobileMenu();" data-i18n="btn-reservar"
+                class="bg-[#d2a679] text-[#2c1d11] px-8 py-4 rounded-full font-bold hover:bg-white transition-colors text-center mt-4">RESERVAR</button>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="relative h-screen flex items-center justify-center overflow-hidden">
@@ -185,9 +213,9 @@
     <!-- Section 2: About Reinventando -->
     <section class="py-24 md:py-32 px-6 md:px-16" id="sobre">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl md:text-5xl lg:text-[3.4rem] font-serif font-bold mb-20 text-center leading-tight">
-                Reinventando la cocina oriental de la<br>mano de la tradición <span
-                    class="font-kaiti text-mitiko-gold text-6xl lg:text-[5rem] font-normal mx-2 align-middle">华宴</span>
+            <h2 class="text-4xl md:text-5xl lg:text-7xl font-serif text-white mb-16 leading-tight drop-shadow-md">
+                <span data-i18n="about-title1" class="text-mitiko-gold/90 font-light italic">Reinventando la</span><br>
+                <span data-i18n="about-title2" class="font-bold tracking-wide">cocina oriental</span>
             </h2>
 
             <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20 items-center">
@@ -201,23 +229,22 @@
 
                 <div
                     class="md:col-span-6 flex flex-col justify-center space-y-8 text-mitiko-light/80 font-light text-base md:text-lg leading-loose pr-0 md:pr-12">
-                    <p>
+                    <p data-i18n="about-p1">
                         Nacido en la rica herencia culinaria de Asia, TorreYan llega a Zaragoza para redefinir el
                         concepto de alta gastronomía china. Crecimos influenciados por la diversidad agrícola de nuestra
                         tierra.
                     </p>
-                    <p>
+                    <p data-i18n="about-p2">
                         Desde pequeños, empezamos a cocinar usando ingredientes locales, desarrollando una pasión por la
-                        experimentación culinaria manteniendo intacta el alma de la receta original.
+                        experimentación culinaria, pero manteniendo intacta el alma de la receta original.
                     </p>
-                    <p>
+                    <p data-i18n="about-p3">
                         Valoramos la riqueza de la gastronomía asiática y, junto a las técnicas modernas, buscamos
-                        mostrar su versatilidad y potencial para la innovación.
+                        mostrar su versatilidad y potencial infinito para la innovación.
                     </p>
-                    <p class="text-white mt-8 text-xl font-medium tracking-wide">
-                        ¡Bienvenido a las cocinas de TorreYan!
-                    </p>
-                    <div class="mt-8">
+                    <p class="font-medium text-mitiko-gold text-xl" data-i18n="about-welcome">¡Bienvenido a las cocinas
+                        de TorreYan!</p>
+                    <div class="pt-4">
                         <span
                             class="font-handwriting text-[4rem] text-mitiko-light/90 rotate-[-5deg] inline-block opacity-80">TorreYan</span>
                     </div>
@@ -237,217 +264,64 @@
     </section>
 
     <!-- Section 3: Tradition & Techniques -->
-    <section class="py-24 md:py-32 px-6 md:px-0 bg-gradient-to-b from-[#0b1c2c] to-[#0f2439] relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 md:px-16 text-center mb-24 relative z-20">
-            <h2
-                class="text-4xl md:text-5xl lg:text-[4rem] font-serif font-bold leading-tight drop-shadow-xl text-white">
-                Tradición milenaria.<br>Técnicas <span class="italic text-mitiko-gold font-serif">modernas</span>.
-            </h2>
-        </div>
+    <section class="py-24 md:py-32 bg-[#0b1c2c] overflow-hidden relative">
+        <div class="absolute -right-64 top-0 w-96 h-96 bg-mitiko-gold/5 rounded-full blur-3xl z-0"></div>
+        <div class="max-w-7xl mx-auto px-6 md:px-16 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center">
+                <div class="order-2 lg:order-1 relative">
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="./437952A2-16FC-4BD1-BFA4-3047E09F5CD0_1_105_c.jpeg"
+                            class="w-full h-64 object-cover rounded-sm shadow-xl mt-8" alt="Dish detail">
+                        <img src="./E63725F6-0747-40E8-A592-436C608BE08D_4_5005_c.jpeg"
+                            class="w-full h-80 object-cover rounded-sm shadow-2xl -mt-8" alt="Chef working">
+                    </div>
+                    <div
+                        class="absolute -bottom-10 -left-10 w-48 h-48 border-[1px] border-mitiko-gold/20 rounded-full z-[-1]">
+                    </div>
+                </div>
 
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center relative min-h-[600px]">
-            <!-- Left Text Column -->
-            <div
-                class="w-full md:w-[45%] text-left space-y-8 text-mitiko-light/80 font-light text-lg leading-loose relative z-20 px-6 md:pl-16 md:pr-12 bg-[#0b1c2c]/40 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none py-12 md:py-0 rounded-xl md:rounded-none border md:border-none border-mitiko-gold/10">
-                <p>
-                    Fusionamos experiencias que nos llevan a elaborar platos con <strong
-                        class="font-semibold text-white tracking-wide">sabores inexplicables</strong> y con una <strong
-                        class="font-semibold text-white tracking-wide">personalidad auténtica</strong>.
-                </p>
-                <p>
-                    Seguimos técnicas tradicionales y somos conocedores del sabor real de cada ingrediente chino desde
-                    su cultivo.
-                </p>
-
-                <div class="pt-8">
-                    <!-- Rounded CTA Button Mitiko style -->
-                    <a href="#carta"
-                        class="inline-block bg-[#d2a679] text-[#2c1d11] px-10 py-4 rounded-full text-xs font-bold tracking-[0.25em] hover:bg-white transition-all duration-300 shadow-[0_0_20px_rgba(203,163,130,0.2)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)]">
-                        DESCUBRE NUESTRA CARTA
+                <div class="order-1 lg:order-2 lg:pl-20 text-center lg:text-left">
+                    <h2 class="text-3xl md:text-5xl lg:text-6xl font-serif text-white leading-tight mb-8">
+                        <span data-i18n="trad-title1" class="text-mitiko-gold">Tradición</span> <span
+                            data-i18n="trad-title2" class="font-normal italic">milenaria.</span><br>
+                        <span data-i18n="trad-title3" class="text-mitiko-gold">Técnicas</span> <span
+                            data-i18n="trad-title4" class="font-bold">modernas.</span>
+                    </h2>
+                    <p data-i18n="trad-p"
+                        class="text-mitiko-light/70 font-light text-base md:text-lg max-w-lg mx-auto lg:mx-0 leading-relaxed mb-10">
+                        Nuestro compromiso es ofrecer una experiencia culinaria inolvidable, fusionando los sabores
+                        asiáticos más auténticos con un toque de innovación, en un ambiente que respira exclusividad.
+                    </p>
+                    <a href="carta.html" data-i18n="trad-btn"
+                        class="inline-block border border-mitiko-gold text-mitiko-gold px-10 py-4 uppercase tracking-[0.2em] text-[11px] font-bold hover:bg-mitiko-gold hover:text-[#0b1c2c] transition-all transform hover:scale-105 duration-300">
+                        DESCUBRE LA CARTA
                     </a>
                 </div>
             </div>
-
-            <!-- Middle Text Column (Hidden on mobile) -->
-            <div
-                class="hidden md:block absolute left-[45%] w-[25%] text-mitiko-light/80 font-light text-base leading-loose z-30 bg-[#0b1c2c]/60 backdrop-blur-md p-8 rounded-lg shadow-2xl border border-mitiko-gold/20 mr-12">
-                <p>
-                    Nuestra comida no solo está para agradar al paladar, sino para dar valor a nuestros orígenes y hacer
-                    sentir la diversidad gastronómica, y así seguir disfrutando del placer de combinar y crear nuevos
-                    sabores.
-                </p>
-            </div>
-
-            <!-- Right Image Column overlapping -->
-            <div
-                class="w-full md:w-[60%] absolute right-0 top-1/2 -translate-y-1/2 opacity-30 md:opacity-100 mix-blend-lighten pointer-events-none md:pointer-events-auto h-full flex items-center justify-end z-10">
-                <!-- Using one of the provided images, 451B310C-DD54-4FF5-9272-B8D9D8CC61DD_4_5005_c.jpeg (private room, dark moody vibe) -->
-                <div class="relative w-full md:w-[85%] h-full md:h-[110%]">
-                    <img src="./451B310C-DD54-4FF5-9272-B8D9D8CC61DD_4_5005_c.jpeg"
-                        class="w-full h-full object-cover shadow-[0_0_50px_rgba(0,0,0,0.8)] opacity-90"
-                        alt="Preparation / Detail">
-                    <!-- Gradient overlay to blend left side of image into background -->
-                    <div class="absolute inset-0 bg-gradient-to-r from-[#0f2439] via-transparent to-transparent"></div>
-                </div>
-            </div>
         </div>
-
     </section>
 
-    <!-- Carta / Menu Secondary Sticky Nav -->
-    <section id="carta" class="bg-mitiko-dark border-t border-mitiko-gold/20 relative z-40">
-        <div class="sticky top-[72px] bg-[#cba382] w-full z-40 shadow-lg border-b border-mitiko-dark/10">
-            <div class="max-w-7xl mx-auto px-4 overflow-x-auto no-scrollbar">
-                <div
-                    class="flex items-center space-x-12 py-4 whitespace-nowrap text-[#0b1c2c] text-xs uppercase tracking-[0.2em] font-bold">
-                    <a href="#menu-entrantes" class="hover:text-white transition-colors">Entrantes</a>
-                    <a href="#menu-principales" class="hover:text-white transition-colors">Principales</a>
-                    <a href="#menu-dimsum" class="hover:text-white transition-colors">Dim Sum</a>
-                    <a href="#menu-postres" class="hover:text-white transition-colors">Postres</a>
-                    <a href="#menu-bebidas" class="hover:text-white transition-colors">Bebidas</a>
-                </div>
+    <!-- Section: Environment (Replaces Carta in index) -->
+    <section id="entorno" class="py-24 bg-mitiko-dark relative border-t border-mitiko-gold/10">
+        <div class="max-w-7xl mx-auto px-6 md:px-16 text-center">
+            <h2 class="text-4xl md:text-6xl font-serif text-white mb-6">
+                <span data-i18n="env-title1" class="text-mitiko-gold/80 italic font-light">Nuestro</span> <span
+                    data-i18n="env-title2" class="font-bold">Entorno</span>
+            </h2>
+            <p data-i18n="env-sub" class="text-mitiko-light/70 mb-16 max-w-2xl mx-auto text-lg">Un espacio diseñado para
+                la elegancia, la privacidad y un confort absoluto.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <img src="/Users/dengyu/.gemini/antigravity/brain/74f23642-5d6a-4847-befd-f16ae62bc068/media__1772413693474.png"
+                    class="w-full h-64 object-cover rounded-md shadow-lg transform hover:scale-105 transition-transform duration-500"
+                    alt="Entorno TorreYan">
+                <img src="./437952A2-16FC-4BD1-BFA4-3047E09F5CD0_1_105_c.jpeg"
+                    class="w-full h-64 object-cover rounded-md shadow-lg transform hover:scale-105 transition-transform duration-500"
+                    alt="Interior Details">
+                <img src="./E63725F6-0747-40E8-A592-436C608BE08D_4_5005_c.jpeg"
+                    class="w-full h-64 object-cover rounded-md shadow-lg transform hover:scale-105 transition-transform duration-500"
+                    alt="Restaurant Interior">
             </div>
-        </div>
-
-        <!-- Menu Content Sections -->
-        <div class="max-w-7xl mx-auto px-6 md:px-16 py-24 min-h-[500px]">
-
-            <!-- Entrantes -->
-            <div id="menu-entrantes" class="scroll-mt-32 mb-24">
-                <div class="text-center mb-16">
-                    <h3 class="text-3xl md:text-4xl font-serif text-white italic">Entrantes <span
-                            class="text-mitiko-gold ml-2 not-italic font-kaiti text-4xl transform translate-y-2 inline-block">前菜</span>
-                    </h3>
-                    <div class="w-12 h-[1px] bg-mitiko-gold/50 mx-auto mt-6"></div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
-                    <!-- Dish 1 -->
-                    <div class="flex flex-col group">
-                        <div class="aspect-[4/3] w-full overflow-hidden bg-white/5 mb-6 relative">
-                            <!-- Placeholder for food image/video -->
-                            <img src="./437952A2-16FC-4BD1-BFA4-3047E09F5CD0_1_105_c.jpeg"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
-                                alt="Rollitos">
-                            <div class="absolute inset-0 bg-black/20"></div>
-                        </div>
-                        <div class="flex justify-between items-baseline mb-3">
-                            <h4 class="text-lg font-serif text-white tracking-wide">Rollitos Pato Pekín</h4>
-                            <span class="text-mitiko-gold font-medium">12.00€</span>
-                        </div>
-                        <p class="text-[13px] text-[#8c9bab] font-light leading-relaxed mb-4 flex-grow">Rollitos
-                            crujientes rellenos de pato pekín confitado, verduras frescas y salsa hoisin casera.</p>
-                        <div class="flex gap-2">
-                            <span
-                                class="w-6 h-6 rounded-full border border-[#8c9bab]/30 flex items-center justify-center text-[#8c9bab] text-[10px]"
-                                title="Gluten">G</span>
-                            <span
-                                class="w-6 h-6 rounded-full border border-[#8c9bab]/30 flex items-center justify-center text-[#8c9bab] text-[10px]"
-                                title="Soja">S</span>
-                        </div>
-                    </div>
-
-                    <!-- Dish 2 -->
-                    <div class="flex flex-col group">
-                        <div class="aspect-[4/3] w-full overflow-hidden bg-white/5 mb-6 relative">
-                            <img src="./E63725F6-0747-40E8-A592-436C608BE08D_4_5005_c.jpeg"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
-                                alt="Ensalada">
-                            <div class="absolute inset-0 bg-black/20"></div>
-                        </div>
-                        <div class="flex justify-between items-baseline mb-3">
-                            <h4 class="text-lg font-serif text-white tracking-wide">Ensalada de Medusa</h4>
-                            <span class="text-mitiko-gold font-medium">14.00€</span>
-                        </div>
-                        <p class="text-[13px] text-[#8c9bab] font-light leading-relaxed mb-4 flex-grow">Medusa
-                            marinada en vinagreta de sésamo suave con pepino encurtido y toques de cilantro.</p>
-                        <div class="flex gap-2">
-                            <span
-                                class="w-6 h-6 rounded-full border border-[#8c9bab]/30 flex items-center justify-center text-[#8c9bab] text-[10px]"
-                                title="Sésamo">Se</span>
-                        </div>
-                    </div>
-
-                    <!-- Dish 3 -->
-                    <div class="flex flex-col group">
-                        <div class="aspect-[4/3] w-full overflow-hidden bg-white/5 mb-6 relative">
-                            <video autoplay loop muted playsinline
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90">
-                                <source src="https://www.pexels.com/download/video/3195394/" type="video/mp4">
-                            </video>
-                            <div class="absolute inset-0 bg-black/20"></div>
-                        </div>
-                        <div class="flex justify-between items-baseline mb-3">
-                            <h4 class="text-lg font-serif text-white tracking-wide">Gyozas Wagyu</h4>
-                            <span class="text-mitiko-gold font-medium">16.00€</span>
-                        </div>
-                        <p class="text-[13px] text-[#8c9bab] font-light leading-relaxed mb-4 flex-grow">Empanadillas
-                            caseras a la plancha rellenas de wagyu A5 y trufa negra.</p>
-                        <div class="flex gap-2">
-                            <span
-                                class="w-6 h-6 rounded-full border border-[#8c9bab]/30 flex items-center justify-center text-[#8c9bab] text-[10px]"
-                                title="Gluten">G</span>
-                            <span
-                                class="w-6 h-6 rounded-full border border-[#8c9bab]/30 flex items-center justify-center text-[#8c9bab] text-[10px]"
-                                title="Lácteos">L</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Principales -->
-            <div id="menu-principales" class="scroll-mt-32 mb-24">
-                <div class="text-center mb-16">
-                    <h3 class="text-3xl md:text-4xl font-serif text-white italic">Principales <span
-                            class="text-mitiko-gold ml-2 not-italic font-kaiti text-4xl transform translate-y-2 inline-block">主菜</span>
-                    </h3>
-                    <div class="w-12 h-[1px] bg-mitiko-gold/50 mx-auto mt-6"></div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
-                    <!-- Dish 1 -->
-                    <div class="flex flex-col group">
-                        <div class="aspect-[4/3] w-full overflow-hidden bg-white/5 mb-6 relative">
-                            <img src="./451B310C-DD54-4FF5-9272-B8D9D8CC61DD_4_5005_c.jpeg"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
-                                alt="Pato">
-                            <div class="absolute inset-0 bg-black/20"></div>
-                        </div>
-                        <div class="flex justify-between items-baseline mb-3">
-                            <h4 class="text-lg font-serif text-white tracking-wide">Pato Asado al Horno de Leña</h4>
-                            <span class="text-mitiko-gold font-medium">32.00€</span>
-                        </div>
-                        <p class="text-[13px] text-[#8c9bab] font-light leading-relaxed mb-4 flex-grow">Medio pato
-                            tradicional asado con piel crujiente, servido con crepes tiernas, pepino, cebolleta y crema
-                            de ciruela.</p>
-                        <div class="flex gap-2">
-                            <span
-                                class="w-6 h-6 rounded-full border border-[#8c9bab]/30 flex items-center justify-center text-[#8c9bab] text-[10px]"
-                                title="Gluten">G</span>
-                            <span
-                                class="w-6 h-6 rounded-full border border-[#8c9bab]/30 flex items-center justify-center text-[#8c9bab] text-[10px]"
-                                title="Soja">S</span>
-                        </div>
-                    </div>
-
-                    <!-- Dish 2 -->
-                    <div class="flex flex-col group">
-                        <div class="aspect-[4/3] w-full overflow-hidden bg-white/5 mb-6 relative">
-                            <img src="./E63725F6-0747-40E8-A592-436C608BE08D_4_5005_c.jpeg"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
-                                alt="Cerdo">
-                            <div class="absolute inset-0 bg-black/20"></div>
-                        </div>
-                        <div class="flex justify-between items-baseline mb-3">
-                            <h4 class="text-lg font-serif text-white tracking-wide">Cerdo Ibérico Agridulce</h4>
-                            <span class="text-mitiko-gold font-medium">24.00€</span>
-                        </div>
-                        <p class="text-[13px] text-[#8c9bab] font-light leading-relaxed mb-4 flex-grow">Presa ibérica
-                            crujiente bañada en salsa agridulce secreta del chef con piña asada y pimientos.</p>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </section>
 
@@ -461,7 +335,9 @@
                 <img src="./torreyan_logo_new.png"
                     class="h-16 w-auto object-contain object-left mb-2 opacity-90 drop-shadow-[0_0_10px_rgba(203,163,130,0.4)]"
                     alt="TorreYan Logo Footer">
-                <p>Centro Comercial Torre Outlet<br>Av. de Logroño, km 6<br>50011 Zaragoza, España</p>
+                <p data-i18n="footer-address1">Centro Comercial Torre Outlet</p>
+                <p data-i18n="footer-address2">Av. de Logroño, km 6</p>
+                <p data-i18n="footer-address3">50011 Zaragoza, España</p>
                 <div class="flex gap-6 mt-2 text-white">
                     <a href="#"
                         class="hover:text-mitiko-gold transition-colors flex items-center justify-center border border-[#8c9bab]/30 rounded-full w-10 h-10">In</a>
@@ -472,70 +348,52 @@
 
             <!-- Col 2: Contacto -->
             <div class="md:col-span-3 flex flex-col gap-4">
-                <h4 class="text-white font-serif text-2xl mb-4 italic">Contacto</h4>
+                <h4 class="text-white font-serif text-2xl mb-4 italic" data-i18n="footer-contact-title">Contacto</h4>
                 <a href="tel:976123456" class="hover:text-mitiko-gold transition-colors block w-fit">976 12 34 56</a>
                 <a href="mailto:info@torreyan.com"
                     class="hover:text-mitiko-gold transition-colors block w-fit">info@torreyan.com</a>
                 <a href="#"
-                    class="mt-8 text-mitiko-gold hover:text-white transition-colors uppercase tracking-[0.15em] text-[10px] font-bold w-max border-b border-mitiko-gold pb-1">Trabaja
+                    class="mt-8 text-mitiko-gold hover:text-white transition-colors uppercase tracking-[0.15em] text-[10px] font-bold w-max border-b border-mitiko-gold pb-1"
+                    data-i18n="footer-work-with-us">Trabaja
                     con nosotros</a>
             </div>
 
             <!-- Col 3: Horario -->
             <div class="md:col-span-3 flex flex-col gap-4">
-                <h4 class="text-white font-serif text-2xl mb-4 italic">Horario</h4>
-                <p class="font-medium text-white mb-[-0.5rem]">Lunes - Domingo</p>
-                <p>13:00 - 16:30</p>
-                <p>20:00 - 23:30</p>
-                <p class="mt-6 text-xs italic text-[#8c9bab]/70 border-t border-[#8c9bab]/20 pt-4 w-max">Aparcamiento
+                <h4 class="text-white font-serif text-2xl mb-4 italic" data-i18n="footer-hours-title">Horario</h4>
+                <p class="font-medium text-white mb-[-0.5rem]" data-i18n="footer-hours-days">Lunes - Domingo</p>
+                <p data-i18n="footer-hours-lunch">13:00 - 16:30</p>
+                <p data-i18n="footer-hours-dinner">20:00 - 23:30</p>
+                <p class="mt-6 text-xs italic text-[#8c9bab]/70 border-t border-[#8c9bab]/20 pt-4 w-max"
+                    data-i18n="footer-parking">Aparcamiento
                     gratuito.</p>
             </div>
 
             <!-- Col 4: Legal -->
             <div class="md:col-span-2 flex flex-col gap-4">
-                <h4 class="text-white font-serif text-2xl mb-4 italic">Legal</h4>
-                <a href="#" class="hover:text-mitiko-gold transition-colors block">Aviso Legal</a>
-                <a href="#" class="hover:text-mitiko-gold transition-colors block">Privacidad</a>
-                <a href="#" class="hover:text-mitiko-gold transition-colors block">Cookies</a>
-                <a href="#" class="hover:text-mitiko-gold transition-colors block">Términos</a>
+                <h4 class="text-white font-serif text-2xl mb-4 italic" data-i18n="footer-legal-title">Legal</h4>
+                <a href="#" class="hover:text-mitiko-gold transition-colors block" data-i18n="footer-legal-notice">Aviso
+                    Legal</a>
+                <a href="#" class="hover:text-mitiko-gold transition-colors block"
+                    data-i18n="footer-privacy">Privacidad</a>
+                <a href="#" class="hover:text-mitiko-gold transition-colors block"
+                    data-i18n="footer-cookies">Cookies</a>
+                <a href="#" class="hover:text-mitiko-gold transition-colors block" data-i18n="footer-terms">Términos</a>
             </div>
         </div>
 
         <div
             class="max-w-7xl mx-auto mt-24 pt-8 border-t border-mitiko-gold/10 flex flex-col md:flex-row justify-between items-center text-[10px] text-[#8c9bab]/60 uppercase tracking-widest gap-4">
-            <p>&copy; 2026 TorreYan 华宴. Todos los derechos reservados.</p>
-            <p class="text-mitiko-gold/70">Diseño inspirado en Mítiko</p>
+            <p data-i18n="footer-copyright">&copy; 2026 TorreYan 华宴. Todos los derechos reservados.</p>
+            <p class="text-mitiko-gold/70" data-i18n="footer-design">Diseño inspirado en Mítiko</p>
         </div>
     </footer>
 
     <script>
-        // Language configuration
-        const i18n = {
-            'es': {
-                'nav-carta': 'Carta',
-                'nav-sobre': 'Sobre TorreYan',
-                'nav-eventos': 'Eventos',
-                'btn-reservar': 'RESERVAR',
-                'hero-descubre': '¡Descubre el<br>nuevo TorreYan',
-                'hero-sub': 'Una cocina tradicional china en constante evolución, en el corazón de Zaragoza.'
-            },
-            'en': {
-                'nav-carta': 'Menu',
-                'nav-sobre': 'About TorreYan',
-                'nav-eventos': 'Events',
-                'btn-reservar': 'RESERVE',
-                'hero-descubre': 'Discover the<br>new TorreYan',
-                'hero-sub': 'A traditional Chinese cuisine in constant evolution, in the heart of Zaragoza.'
-            },
-            'zh': {
-                'nav-carta': '菜单',
-                'nav-sobre': '关于华宴',
-                'nav-eventos': '活动',
-                'btn-reservar': '预定',
-                'hero-descubre': '探索全新的<br>TorreYan',
-                'hero-sub': '位于萨拉戈萨中心，不断演进的传统中国美食。'
-            }
-        };
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('-translate-y-full');
+        }
 
         // Setup Language initially
         function initLanguage() {
@@ -560,8 +418,8 @@
             document.getElementById('current-lang').innerText = lang.toUpperCase();
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (i18n[lang] && i18n[lang][key]) {
-                    el.innerHTML = i18n[lang][key];
+                if (window.siteTranslations && window.siteTranslations[lang] && window.siteTranslations[lang][key]) {
+                    el.innerHTML = window.siteTranslations[lang][key];
                 }
             });
             // Update nav spacing for zh vs latin text
