@@ -95,20 +95,23 @@
         <div
             class="hidden md:flex items-center justify-end gap-x-6 text-[11px] tracking-[0.2em] uppercase font-medium min-w-[300px]">
             <!-- Language Switcher -->
-            <div class="relative group cursor-pointer flex items-center gap-1 z-50">
-                <span id="current-lang" class="hover:text-mitiko-gold transition-colors">ES</span>
-                <span class="text-[8px] mt-0.5 text-mitiko-gold">▼</span>
+            <div class="relative group cursor-pointer z-50 py-4">
+                <div class="flex items-center gap-1">
+                    <span id="current-lang" class="hover:text-mitiko-gold transition-colors">ES</span>
+                    <span class="text-[8px] mt-0.5 text-mitiko-gold">▼</span>
+                </div>
+                <!-- Dropdown (added pt-4 to bridge the gap, and an invisible overlay is created by the parent's py-4) -->
                 <div
-                    class="absolute top-full right-0 mt-4 bg-[#0b1c2c]/95 backdrop-blur-md border border-mitiko-gold/20 py-2 min-w-[100px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top shadow-2xl flex flex-col pointer-events-none group-hover:pointer-events-auto">
+                    class="absolute top-full right-0 bg-[#0b1c2c]/95 backdrop-blur-md border border-mitiko-gold/20 py-2 min-w-[100px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top shadow-2xl flex flex-col pointer-events-none group-hover:pointer-events-auto">
                     <button
                         class="lang-btn px-4 py-3 text-left hover:text-mitiko-gold hover:bg-white/5 transition-colors w-full uppercase"
-                        data-lang="en">EN - English</button>
+                        data-lang="en">EN</button>
                     <button
                         class="lang-btn px-4 py-3 text-left hover:text-mitiko-gold hover:bg-white/5 transition-colors w-full uppercase"
-                        data-lang="es">ES - Español</button>
+                        data-lang="es">ES</button>
                     <button
                         class="lang-btn px-4 py-3 text-left hover:text-mitiko-gold hover:bg-white/5 transition-colors w-full uppercase"
-                        data-lang="zh">ZH - 中文</button>
+                        data-lang="zh">ZH</button>
                 </div>
             </div>
 
@@ -120,8 +123,8 @@
                 </svg>
                 976 12 34 56
             </a>
-            <a href="#reservar" data-i18n="btn-reservar"
-                class="bg-[#d2a679] text-[#2c1d11] px-8 py-3 rounded-full font-bold hover:bg-white hover:text-[#d2a679] transition-all transform hover:scale-105 shadow-[0_0_15px_rgba(203,163,130,0.3)]">RESERVAR</a>
+            <button onclick="openReservationModal()" data-i18n="btn-reservar"
+                class="bg-[#d2a679] text-[#2c1d11] px-8 py-3 rounded-full font-bold hover:bg-white hover:text-[#d2a679] transition-all transform hover:scale-105 shadow-[0_0_15px_rgba(203,163,130,0.3)]">RESERVAR</button>
         </div>
 
         <button class="md:hidden text-mitiko-gold hover:text-white transition-colors">
@@ -156,12 +159,28 @@
                 class="text-base md:text-xl font-medium text-white/90 max-w-2xl mt-6 tracking-wide drop-shadow-md mx-auto">
                 Una cocina tradicional china en constante evolución, en el corazón de Zaragoza.
             </p>
-            <a href="#reservar" data-i18n="btn-reservar"
+            <a href="javascript:void(0)" onclick="openReservationModal()" data-i18n="btn-reservar"
                 class="mt-14 bg-[#d2a679] text-[#2c1d11] px-12 py-4 rounded-full text-sm font-bold tracking-[0.2em] hover:bg-white transition-colors shadow-2xl hover:scale-105 transform duration-300">
                 RESERVAR
             </a>
         </div>
     </section>
+
+    <!-- Reservation Modal -->
+    <div id="reservation-modal"
+        class="fixed inset-0 z-[100] flex items-center justify-center opacity-0 invisible transition-all duration-500 backdrop-blur-md bg-black/60 pt-20 pb-4 px-4">
+        <div class="relative w-full max-w-4xl h-full max-h-[800px] bg-white rounded-lg shadow-2xl overflow-hidden transform scale-95 transition-transform duration-500"
+            id="reservation-modal-content">
+            <button onclick="closeReservationModal()"
+                class="absolute top-4 right-4 z-10 bg-[#0b1c2c] text-mitiko-gold w-10 h-10 rounded-full flex items-center justify-center hover:bg-mitiko-gold hover:text-[#0b1c2c] transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+            <iframe id="thefork-iframe" src="" class="w-full h-full border-none" style="min-height: 500px"></iframe>
+        </div>
+    </div>
 
     <!-- Section 2: About Reinventando -->
     <section class="py-24 md:py-32 px-6 md:px-16" id="sobre">
@@ -172,16 +191,16 @@
             </h2>
 
             <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20 items-center">
-                <div class="md:col-span-5 relative group">
-                    <img src="./3815F6FF-D43E-4F59-9062-14F5CBE8BFE4_1_105_c.jpeg"
-                        class="w-full aspect-[4/5] object-cover rounded-sm shadow-2xl" alt="Chef/Interior Portrait">
+                <div class="md:col-span-6 relative group">
+                    <img src="./B5332BCC-10FA-48F9-8698-BCAB6F3E469D_4_5005_c.jpeg"
+                        class="w-full object-cover rounded shadow-2xl" alt="Chef/Interior Portrait">
                     <div
-                        class="absolute inset-0 border-[1px] border-mitiko-gold/40 m-6 pointer-events-none transition-all duration-700 ease-out">
+                        class="absolute inset-0 border-[1px] border-mitiko-gold/40 m-4 pointer-events-none transition-all duration-700 ease-out">
                     </div>
                 </div>
 
                 <div
-                    class="md:col-span-7 flex flex-col justify-center space-y-8 text-mitiko-light/80 font-light text-base md:text-lg leading-loose pr-0 md:pr-12">
+                    class="md:col-span-6 flex flex-col justify-center space-y-8 text-mitiko-light/80 font-light text-base md:text-lg leading-loose pr-0 md:pr-12">
                     <p>
                         Nacido en la rica herencia culinaria de Asia, TorreYan llega a Zaragoza para redefinir el
                         concepto de alta gastronomía china. Crecimos influenciados por la diversidad agrícola de nuestra
@@ -275,6 +294,163 @@
 
     </section>
 
+    <!-- Carta / Menu Secondary Sticky Nav -->
+    <section id="carta" class="bg-mitiko-dark border-t border-mitiko-gold/20 relative z-40">
+        <div class="sticky top-[72px] bg-[#cba382] w-full z-40 shadow-lg border-b border-mitiko-dark/10">
+            <div class="max-w-7xl mx-auto px-4 overflow-x-auto no-scrollbar">
+                <div
+                    class="flex items-center space-x-12 py-4 whitespace-nowrap text-[#0b1c2c] text-xs uppercase tracking-[0.2em] font-bold">
+                    <a href="#menu-entrantes" class="hover:text-white transition-colors">Entrantes</a>
+                    <a href="#menu-principales" class="hover:text-white transition-colors">Principales</a>
+                    <a href="#menu-dimsum" class="hover:text-white transition-colors">Dim Sum</a>
+                    <a href="#menu-postres" class="hover:text-white transition-colors">Postres</a>
+                    <a href="#menu-bebidas" class="hover:text-white transition-colors">Bebidas</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Content Sections -->
+        <div class="max-w-7xl mx-auto px-6 md:px-16 py-24 min-h-[500px]">
+
+            <!-- Entrantes -->
+            <div id="menu-entrantes" class="scroll-mt-32 mb-24">
+                <div class="text-center mb-16">
+                    <h3 class="text-3xl md:text-4xl font-serif text-white italic">Entrantes <span
+                            class="text-mitiko-gold ml-2 not-italic font-kaiti text-4xl transform translate-y-2 inline-block">前菜</span>
+                    </h3>
+                    <div class="w-12 h-[1px] bg-mitiko-gold/50 mx-auto mt-6"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
+                    <!-- Dish 1 -->
+                    <div class="flex flex-col group">
+                        <div class="aspect-[4/3] w-full overflow-hidden bg-white/5 mb-6 relative">
+                            <!-- Placeholder for food image/video -->
+                            <img src="./437952A2-16FC-4BD1-BFA4-3047E09F5CD0_1_105_c.jpeg"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
+                                alt="Rollitos">
+                            <div class="absolute inset-0 bg-black/20"></div>
+                        </div>
+                        <div class="flex justify-between items-baseline mb-3">
+                            <h4 class="text-lg font-serif text-white tracking-wide">Rollitos Pato Pekín</h4>
+                            <span class="text-mitiko-gold font-medium">12.00€</span>
+                        </div>
+                        <p class="text-[13px] text-[#8c9bab] font-light leading-relaxed mb-4 flex-grow">Rollitos
+                            crujientes rellenos de pato pekín confitado, verduras frescas y salsa hoisin casera.</p>
+                        <div class="flex gap-2">
+                            <span
+                                class="w-6 h-6 rounded-full border border-[#8c9bab]/30 flex items-center justify-center text-[#8c9bab] text-[10px]"
+                                title="Gluten">G</span>
+                            <span
+                                class="w-6 h-6 rounded-full border border-[#8c9bab]/30 flex items-center justify-center text-[#8c9bab] text-[10px]"
+                                title="Soja">S</span>
+                        </div>
+                    </div>
+
+                    <!-- Dish 2 -->
+                    <div class="flex flex-col group">
+                        <div class="aspect-[4/3] w-full overflow-hidden bg-white/5 mb-6 relative">
+                            <img src="./E63725F6-0747-40E8-A592-436C608BE08D_4_5005_c.jpeg"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
+                                alt="Ensalada">
+                            <div class="absolute inset-0 bg-black/20"></div>
+                        </div>
+                        <div class="flex justify-between items-baseline mb-3">
+                            <h4 class="text-lg font-serif text-white tracking-wide">Ensalada de Medusa</h4>
+                            <span class="text-mitiko-gold font-medium">14.00€</span>
+                        </div>
+                        <p class="text-[13px] text-[#8c9bab] font-light leading-relaxed mb-4 flex-grow">Medusa
+                            marinada en vinagreta de sésamo suave con pepino encurtido y toques de cilantro.</p>
+                        <div class="flex gap-2">
+                            <span
+                                class="w-6 h-6 rounded-full border border-[#8c9bab]/30 flex items-center justify-center text-[#8c9bab] text-[10px]"
+                                title="Sésamo">Se</span>
+                        </div>
+                    </div>
+
+                    <!-- Dish 3 -->
+                    <div class="flex flex-col group">
+                        <div class="aspect-[4/3] w-full overflow-hidden bg-white/5 mb-6 relative">
+                            <video autoplay loop muted playsinline
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90">
+                                <source src="https://www.pexels.com/download/video/3195394/" type="video/mp4">
+                            </video>
+                            <div class="absolute inset-0 bg-black/20"></div>
+                        </div>
+                        <div class="flex justify-between items-baseline mb-3">
+                            <h4 class="text-lg font-serif text-white tracking-wide">Gyozas Wagyu</h4>
+                            <span class="text-mitiko-gold font-medium">16.00€</span>
+                        </div>
+                        <p class="text-[13px] text-[#8c9bab] font-light leading-relaxed mb-4 flex-grow">Empanadillas
+                            caseras a la plancha rellenas de wagyu A5 y trufa negra.</p>
+                        <div class="flex gap-2">
+                            <span
+                                class="w-6 h-6 rounded-full border border-[#8c9bab]/30 flex items-center justify-center text-[#8c9bab] text-[10px]"
+                                title="Gluten">G</span>
+                            <span
+                                class="w-6 h-6 rounded-full border border-[#8c9bab]/30 flex items-center justify-center text-[#8c9bab] text-[10px]"
+                                title="Lácteos">L</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Principales -->
+            <div id="menu-principales" class="scroll-mt-32 mb-24">
+                <div class="text-center mb-16">
+                    <h3 class="text-3xl md:text-4xl font-serif text-white italic">Principales <span
+                            class="text-mitiko-gold ml-2 not-italic font-kaiti text-4xl transform translate-y-2 inline-block">主菜</span>
+                    </h3>
+                    <div class="w-12 h-[1px] bg-mitiko-gold/50 mx-auto mt-6"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
+                    <!-- Dish 1 -->
+                    <div class="flex flex-col group">
+                        <div class="aspect-[4/3] w-full overflow-hidden bg-white/5 mb-6 relative">
+                            <img src="./451B310C-DD54-4FF5-9272-B8D9D8CC61DD_4_5005_c.jpeg"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
+                                alt="Pato">
+                            <div class="absolute inset-0 bg-black/20"></div>
+                        </div>
+                        <div class="flex justify-between items-baseline mb-3">
+                            <h4 class="text-lg font-serif text-white tracking-wide">Pato Asado al Horno de Leña</h4>
+                            <span class="text-mitiko-gold font-medium">32.00€</span>
+                        </div>
+                        <p class="text-[13px] text-[#8c9bab] font-light leading-relaxed mb-4 flex-grow">Medio pato
+                            tradicional asado con piel crujiente, servido con crepes tiernas, pepino, cebolleta y crema
+                            de ciruela.</p>
+                        <div class="flex gap-2">
+                            <span
+                                class="w-6 h-6 rounded-full border border-[#8c9bab]/30 flex items-center justify-center text-[#8c9bab] text-[10px]"
+                                title="Gluten">G</span>
+                            <span
+                                class="w-6 h-6 rounded-full border border-[#8c9bab]/30 flex items-center justify-center text-[#8c9bab] text-[10px]"
+                                title="Soja">S</span>
+                        </div>
+                    </div>
+
+                    <!-- Dish 2 -->
+                    <div class="flex flex-col group">
+                        <div class="aspect-[4/3] w-full overflow-hidden bg-white/5 mb-6 relative">
+                            <img src="./E63725F6-0747-40E8-A592-436C608BE08D_4_5005_c.jpeg"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
+                                alt="Cerdo">
+                            <div class="absolute inset-0 bg-black/20"></div>
+                        </div>
+                        <div class="flex justify-between items-baseline mb-3">
+                            <h4 class="text-lg font-serif text-white tracking-wide">Cerdo Ibérico Agridulce</h4>
+                            <span class="text-mitiko-gold font-medium">24.00€</span>
+                        </div>
+                        <p class="text-[13px] text-[#8c9bab] font-light leading-relaxed mb-4 flex-grow">Presa ibérica
+                            crujiente bañada en salsa agridulce secreta del chef con piña asada y pimientos.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="bg-[#081420] pt-24 pb-12 px-6 md:px-16 border-t border-mitiko-gold/10 overflow-hidden">
         <div
@@ -361,7 +537,26 @@
             }
         };
 
+        // Setup Language initially
+        function initLanguage() {
+            let savedLang = localStorage.getItem('torreyan_lang');
+            let langCode = 'es'; // default
+
+            if (savedLang) {
+                langCode = savedLang;
+            } else {
+                let sysLang = navigator.language || navigator.userLanguage;
+                let sysLangPrefix = sysLang.split('-')[0].toLowerCase();
+                if (['en', 'es', 'zh'].includes(sysLangPrefix)) {
+                    langCode = sysLangPrefix;
+                }
+            }
+
+            setLanguage(langCode);
+        }
+
         function setLanguage(lang) {
+            localStorage.setItem('torreyan_lang', lang);
             document.getElementById('current-lang').innerText = lang.toUpperCase();
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
@@ -377,24 +572,47 @@
             }
         }
 
-        // Initialize Language to device default
         document.addEventListener('DOMContentLoaded', () => {
-            let sysLang = navigator.language || navigator.userLanguage;
-            let langCode = sysLang.split('-')[0].toLowerCase();
-
-            // Fallback to ES if not English or Chinese
-            if (!['en', 'es', 'zh'].includes(langCode)) {
-                langCode = 'es';
-            }
-
-            setLanguage(langCode);
+            initLanguage();
 
             // Bind click events to lang buttons
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     setLanguage(e.target.getAttribute('data-lang'));
+                    // Force unfocus to hide dropdown on mobile/touch
+                    e.target.blur();
                 });
             });
+        });
+
+        // TheFork Reservation Modal functions
+        const modal = document.getElementById('reservation-modal');
+        const modalContent = document.getElementById('reservation-modal-content');
+        const iframe = document.getElementById('thefork-iframe');
+
+        function openReservationModal() {
+            iframe.src = "https://widget.thefork.com/es/350edaee-adc2-4f33-9770-e165febae1d7?step=date&utm_source=mitiko.es";
+            modal.classList.remove('opacity-0', 'invisible');
+            modalContent.classList.remove('scale-95');
+            modalContent.classList.add('scale-100');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeReservationModal() {
+            modal.classList.add('opacity-0', 'invisible');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            document.body.style.overflow = '';
+            setTimeout(() => {
+                iframe.src = "";
+            }, 500); // Clear iframe after animation
+        }
+
+        // Close modal on outside click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeReservationModal();
+            }
         });
 
         // Transparent to solid/glass header on scroll
