@@ -1,496 +1,177 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
-
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TorreYan 华宴 | Zaragoza</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Zhi+Mang+Xing&family=Great+Vibes&display=swap"
-        rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        mitiko: {
-                            dark: '#0b1c2c',
-                            gold: '#cba382',
-                            light: '#f8f9fa',
-                            gray: '#a0aec0'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Montserrat', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
-                        handwriting: ['Great Vibes', 'cursive'],
-                        kaiti: ['Zhi Mang Xing', 'cursive']
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            background-color: #0b1c2c;
-            color: #f8f9fa;
-        }
-
-        .gold-border {
-            border-color: #cba382;
-        }
-
-        .gold-text {
-            color: #cba382;
-        }
-
-        .glass-header {
-            background: rgba(11, 28, 44, 0.95);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(203, 163, 130, 0.1);
-            transition: all 0.4s ease;
-        }
-
-        /* Hide scrollbar for cleaner look */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #0b1c2c;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #cba382;
-            border-radius: 4px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>中汇文件销售分析助手</title>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- SheetJS (xlsx.full.min.js) CDN for local Excel/CSV parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="styles.css">
 </head>
+<body>
 
-<body class="font-sans antialiased overflow-x-hidden selection:bg-mitiko-gold selection:text-[#0b1c2c]">
+  <!-- Fullscreen drag overlay -->
+  <div id="drag-overlay" class="dragover-overlay">
+    <div class="upload-icon">📥</div>
+    <h2>拖拽到此处上传销售文件</h2>
+  </div>
+
+  <div class="app-container">
     <!-- Header -->
-    <header
-        class="fixed w-full z-50 top-0 transition-all duration-300 py-4 px-6 md:px-12 flex justify-between items-center"
-        id="navbar">
-        <nav class="hidden md:flex gap-8 text-[11px] tracking-[0.2em] uppercase font-medium">
-            <a href="carta.html" data-i18n="nav-carta"
-                class="hover:text-mitiko-gold transition-colors flex items-center gap-1">Carta</a>
-            <a href="#sobre" data-i18n="nav-sobre"
-                class="hover:text-mitiko-gold transition-colors flex items-center gap-1">Sobre TorreYan</a>
-            <a href="#entorno" data-i18n="nav-entorno"
-                class="hover:text-mitiko-gold transition-colors flex items-center gap-1">El Entorno</a>
-        </nav>
-
-        <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center">
-            <!-- Using text for logo in header for crispness, consistent with Mitiko's M T K O style but text -->
-            <h1
-                class="text-2xl md:text-3xl font-serif tracking-[0.4em] font-light text-white text-center flex items-center justify-center pointer-events-none">
-                <span class="ml-2">TORRE</span>
-                <span class="font-kaiti text-3xl md:text-5xl text-mitiko-gold mx-2 md:mx-4 tracking-normal"
-                    style="line-height: 0.5;">华宴</span>
-                <span>YAN</span>
-            </h1>
-        </div>
-
-        <div
-            class="hidden md:flex items-center justify-end gap-x-6 text-[11px] tracking-[0.2em] uppercase font-medium min-w-[300px]">
-            <!-- Language Switcher -->
-            <div class="relative group cursor-pointer z-50 py-4 h-full flex items-center">
-                <div class="flex items-center gap-1">
-                    <span id="current-lang" class="hover:text-mitiko-gold transition-colors">ES</span>
-                    <span class="text-[8px] mt-0.5 text-mitiko-gold">▼</span>
-                </div>
-                <!-- Dropdown -->
-                <div
-                    class="absolute top-full right-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top pointer-events-none group-hover:pointer-events-auto">
-                    <div
-                        class="bg-[#0b1c2c]/95 backdrop-blur-md border border-mitiko-gold/20 min-w-[100px] flex flex-col shadow-2xl">
-                        <button
-                            class="lang-btn px-4 py-3 text-left hover:text-mitiko-gold hover:bg-white/5 transition-colors w-full uppercase"
-                            data-lang="en">EN</button>
-                        <button
-                            class="lang-btn px-4 py-3 text-left hover:text-mitiko-gold hover:bg-white/5 transition-colors w-full uppercase"
-                            data-lang="es">ES</button>
-                        <button
-                            class="lang-btn px-4 py-3 text-left hover:text-mitiko-gold hover:bg-white/5 transition-colors w-full uppercase"
-                            data-lang="zh">ZH</button>
-                    </div>
-                </div>
-            </div>
-
-            <a href="tel:976123456" class="hover:text-mitiko-gold transition-colors flex items-center gap-2">
-                <svg class="w-4 h-4 text-mitiko-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
-                    </path>
-                </svg>
-                976 12 34 56
-            </a>
-            <button onclick="openReservationModal()" data-i18n="btn-reservar"
-                class="bg-[#d2a679] text-[#2c1d11] px-8 py-3 rounded-full font-bold hover:bg-white hover:text-[#d2a679] transition-all transform hover:scale-105 shadow-[0_0_15px_rgba(203,163,130,0.3)]">RESERVAR</button>
-        </div>
+    <header>
+      <div class="logo-section">
+        <h1>中汇<span>文件销售分析助手</span></h1>
+        <p>支持拖拽分析 Excel (.xlsx, .xls) 和 CSV 格式销售报告</p>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-primary" id="upload-btn">📂 上传文件</button>
+        <button class="btn" id="load-demo">📊 加载演示数据</button>
+      </div>
     </header>
 
-    <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu"
-        class="fixed inset-0 z-40 bg-[#0b1c2c] transform -translate-y-full transition-transform duration-500 ease-in-out md:hidden flex flex-col justify-start items-center pt-24">
-        <button onclick="toggleMobileMenu()"
-            class="absolute top-4 right-4 text-mitiko-gold hover:text-white transition-colors">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12">
-                </path>
-            </svg>
-        </button>
-        <div class="flex flex-col space-y-8 mt-16 px-6 text-[11px] tracking-[0.2em] font-medium uppercase">
-            <a href="carta.html" data-i18n="nav-carta"
-                class="hover:text-mitiko-gold transition-colors block border-b border-mitiko-gold/20 pb-4">Carta</a>
-            <a href="index.html#sobre" data-i18n="nav-sobre"
-                class="hover:text-mitiko-gold transition-colors block border-b border-mitiko-gold/20 pb-4">Sobre
-                TorreYan</a>
-            <a href="index.html#entorno" data-i18n="nav-entorno"
-                class="hover:text-mitiko-gold transition-colors block border-b border-mitiko-gold/20 pb-4">El
-                Entorno</a>
-            <a href="#" data-i18n="nav-eventos"
-                class="hover:text-mitiko-gold transition-colors block border-b border-mitiko-gold/20 pb-4">Eventos</a>
-
-            <a href="tel:976123456" class="hover:text-mitiko-gold transition-colors flex items-center gap-2 mt-8">
-                <svg class="w-4 h-4 text-mitiko-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
-                    </path>
-                </svg>
-                976 12 34 56
-            </a>
-            <button onclick="openReservationModal(); toggleMobileMenu();" data-i18n="btn-reservar"
-                class="bg-[#d2a679] text-[#2c1d11] px-8 py-4 rounded-full font-bold hover:bg-white transition-colors text-center mt-4">RESERVAR</button>
-        </div>
-    </div>
-
-    <!-- Hero Section -->
-    <section class="relative h-screen flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <!-- Background Video -->
-            <video autoplay loop muted playsinline
-                class="w-full h-full object-cover opacity-[0.70] scale-105 transform origin-center">
-                <source src="https://www.pexels.com/zh-cn/download/video/3209799/" type="video/mp4">
-            </video>
-            <div class="absolute inset-0 bg-gradient-to-t from-[#0b1c2c] via-[#0b1c2c]/50 to-[#0b1c2c]/30"></div>
-        </div>
-
-        <div class="relative z-10 flex flex-col items-center text-center mt-32 px-4 max-w-5xl mx-auto w-full">
-            <img src="./torreyan_logo_new.png"
-                class="h-28 md:h-36 lg:h-44 w-auto mb-10 opacity-95 drop-shadow-[0_0_20px_rgba(203,163,130,0.6)] object-contain"
-                alt="TorreYan Gold Logo">
-            <h2
-                class="text-5xl md:text-[5rem] lg:text-[6rem] leading-[1.1] font-serif font-bold mb-6 drop-shadow-xl text-white">
-                <span data-i18n="hero-descubre">¡Descubre el<br>nuevo TorreYan</span> <span
-                    class="font-kaiti text-mitiko-gold text-6xl md:text-[6rem] lg:text-[7rem] px-2 font-normal italic transform -rotate-6 inline-block">华宴</span>!
-            </h2>
-            <p data-i18n="hero-sub"
-                class="text-base md:text-xl font-medium text-white/90 max-w-2xl mt-6 tracking-wide drop-shadow-md mx-auto">
-                Una cocina tradicional china en constante evolución, en el corazón de Zaragoza.
-            </p>
-            <a href="javascript:void(0)" onclick="openReservationModal()" data-i18n="btn-reservar"
-                class="mt-14 bg-[#d2a679] text-[#2c1d11] px-12 py-4 rounded-full text-sm font-bold tracking-[0.2em] hover:bg-white transition-colors shadow-2xl hover:scale-105 transform duration-300">
-                RESERVAR
-            </a>
-        </div>
+    <!-- Welcome / Upload area when no file is loaded -->
+    <section id="welcome-card" class="upload-card">
+      <div class="upload-icon">📊</div>
+      <h3>开始分析您的销售数据</h3>
+      <p>拖拽文件至此区域，或点击此处选择本地文件。您的数据完全在本地浏览器端处理，不会上传到任何服务器。</p>
+      <button class="btn btn-primary">选择文件</button>
+      <input type="file" id="file-input" accept=".xlsx, .xls, .csv">
     </section>
 
-    <!-- Reservation Modal -->
-    <div id="reservation-modal"
-        class="fixed inset-0 z-[100] flex items-center justify-center opacity-0 invisible transition-all duration-500 backdrop-blur-md bg-black/60 pt-20 pb-4 px-4">
-        <div class="relative w-full max-w-4xl h-full max-h-[800px] bg-white rounded-lg shadow-2xl overflow-hidden transform scale-95 transition-transform duration-500"
-            id="reservation-modal-content">
-            <button onclick="closeReservationModal()"
-                class="absolute top-4 right-4 z-10 bg-[#0b1c2c] text-mitiko-gold w-10 h-10 rounded-full flex items-center justify-center hover:bg-mitiko-gold hover:text-[#0b1c2c] transition-colors">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                    </path>
-                </svg>
-            </button>
-            <iframe id="thefork-iframe" src="" class="w-full h-full border-none" style="min-height: 500px"></iframe>
-        </div>
-    </div>
+    <!-- Excel Sheet Tab Selector -->
+    <div id="tabs-container" class="tabs-container hidden"></div>
 
-    <!-- Section 2: About Reinventando -->
-    <section class="py-24 md:py-32 px-6 md:px-16" id="sobre">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl md:text-5xl lg:text-7xl font-serif text-white mb-16 leading-tight drop-shadow-md">
-                <span data-i18n="about-title1" class="text-mitiko-gold/90 font-light italic">Reinventando la</span><br>
-                <span data-i18n="about-title2" class="font-bold tracking-wide">cocina oriental</span>
-            </h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20 items-center">
-                <div class="md:col-span-6 relative group">
-                    <img src="./B5332BCC-10FA-48F9-8698-BCAB6F3E469D_4_5005_c.jpeg"
-                        class="w-full object-cover rounded shadow-2xl" alt="Chef/Interior Portrait">
-                    <div
-                        class="absolute inset-0 border-[1px] border-mitiko-gold/40 m-4 pointer-events-none transition-all duration-700 ease-out">
-                    </div>
-                </div>
-
-                <div
-                    class="md:col-span-6 flex flex-col justify-center space-y-8 text-mitiko-light/80 font-light text-base md:text-lg leading-loose pr-0 md:pr-12">
-                    <p data-i18n="about-p1">
-                        Nacido en la rica herencia culinaria de Asia, TorreYan llega a Zaragoza para redefinir el
-                        concepto de alta gastronomía china. Crecimos influenciados por la diversidad agrícola de nuestra
-                        tierra.
-                    </p>
-                    <p data-i18n="about-p2">
-                        Desde pequeños, empezamos a cocinar usando ingredientes locales, desarrollando una pasión por la
-                        experimentación culinaria, pero manteniendo intacta el alma de la receta original.
-                    </p>
-                    <p data-i18n="about-p3">
-                        Valoramos la riqueza de la gastronomía asiática y, junto a las técnicas modernas, buscamos
-                        mostrar su versatilidad y potencial infinito para la innovación.
-                    </p>
-                    <p class="font-medium text-mitiko-gold text-xl" data-i18n="about-welcome">¡Bienvenido a las cocinas
-                        de TorreYan!</p>
-                    <div class="pt-4">
-                        <span
-                            class="font-handwriting text-[4rem] text-mitiko-light/90 rotate-[-5deg] inline-block opacity-80">TorreYan</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex justify-center mt-24">
-                <div
-                    class="animate-bounce border border-mitiko-gold/30 rounded-full p-3 text-mitiko-gold hover:bg-mitiko-gold hover:text-mitiko-dark transition-colors cursor-pointer">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                            d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-                    </svg>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 3: Tradition & Techniques -->
-    <section class="py-24 md:py-32 bg-[#0b1c2c] overflow-hidden relative">
-        <div class="absolute -right-64 top-0 w-96 h-96 bg-mitiko-gold/5 rounded-full blur-3xl z-0"></div>
-        <div class="max-w-7xl mx-auto px-6 md:px-16 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center">
-                <div class="order-2 lg:order-1 relative">
-                    <div class="grid grid-cols-2 gap-4">
-                        <img src="./437952A2-16FC-4BD1-BFA4-3047E09F5CD0_1_105_c.jpeg"
-                            class="w-full h-64 object-cover rounded-sm shadow-xl mt-8" alt="Dish detail">
-                        <img src="./E63725F6-0747-40E8-A592-436C608BE08D_4_5005_c.jpeg"
-                            class="w-full h-80 object-cover rounded-sm shadow-2xl -mt-8" alt="Chef working">
-                    </div>
-                    <div
-                        class="absolute -bottom-10 -left-10 w-48 h-48 border-[1px] border-mitiko-gold/20 rounded-full z-[-1]">
-                    </div>
-                </div>
-
-                <div class="order-1 lg:order-2 lg:pl-20 text-center lg:text-left">
-                    <h2 class="text-3xl md:text-5xl lg:text-6xl font-serif text-white leading-tight mb-8">
-                        <span data-i18n="trad-title1" class="text-mitiko-gold">Tradición</span> <span
-                            data-i18n="trad-title2" class="font-normal italic">milenaria.</span><br>
-                        <span data-i18n="trad-title3" class="text-mitiko-gold">Técnicas</span> <span
-                            data-i18n="trad-title4" class="font-bold">modernas.</span>
-                    </h2>
-                    <p data-i18n="trad-p"
-                        class="text-mitiko-light/70 font-light text-base md:text-lg max-w-lg mx-auto lg:mx-0 leading-relaxed mb-10">
-                        Nuestro compromiso es ofrecer una experiencia culinaria inolvidable, fusionando los sabores
-                        asiáticos más auténticos con un toque de innovación, en un ambiente que respira exclusividad.
-                    </p>
-                    <a href="carta.html" data-i18n="trad-btn"
-                        class="inline-block border border-mitiko-gold text-mitiko-gold px-10 py-4 uppercase tracking-[0.2em] text-[11px] font-bold hover:bg-mitiko-gold hover:text-[#0b1c2c] transition-all transform hover:scale-105 duration-300">
-                        DESCUBRE LA CARTA
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section: Environment (Replaces Carta in index) -->
-    <section id="entorno" class="py-24 bg-mitiko-dark relative border-t border-mitiko-gold/10">
-        <div class="max-w-7xl mx-auto px-6 md:px-16 text-center">
-            <h2 class="text-4xl md:text-6xl font-serif text-white mb-6">
-                <span data-i18n="env-title1" class="text-mitiko-gold/80 italic font-light">Nuestro</span> <span
-                    data-i18n="env-title2" class="font-bold">Entorno</span>
-            </h2>
-            <p data-i18n="env-sub" class="text-mitiko-light/70 mb-16 max-w-2xl mx-auto text-lg">Un espacio diseñado para
-                la elegancia, la privacidad y un confort absoluto.</p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <img src="/Users/dengyu/.gemini/antigravity/brain/74f23642-5d6a-4847-befd-f16ae62bc068/media__1772413693474.png"
-                    class="w-full h-64 object-cover rounded-md shadow-lg transform hover:scale-105 transition-transform duration-500"
-                    alt="Entorno TorreYan">
-                <img src="./437952A2-16FC-4BD1-BFA4-3047E09F5CD0_1_105_c.jpeg"
-                    class="w-full h-64 object-cover rounded-md shadow-lg transform hover:scale-105 transition-transform duration-500"
-                    alt="Interior Details">
-                <img src="./E63725F6-0747-40E8-A592-436C608BE08D_4_5005_c.jpeg"
-                    class="w-full h-64 object-cover rounded-md shadow-lg transform hover:scale-105 transition-transform duration-500"
-                    alt="Restaurant Interior">
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-[#081420] pt-24 pb-12 px-6 md:px-16 border-t border-mitiko-gold/10 overflow-hidden">
-        <div
-            class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 text-sm text-[#8c9bab] font-light leading-loose">
-
-            <!-- Col 1: Logo & Address -->
-            <div class="md:col-span-4 flex flex-col gap-6 pr-8">
-                <img src="./torreyan_logo_new.png"
-                    class="h-16 w-auto object-contain object-left mb-2 opacity-90 drop-shadow-[0_0_10px_rgba(203,163,130,0.4)]"
-                    alt="TorreYan Logo Footer">
-                <p data-i18n="footer-address1">Centro Comercial Torre Outlet</p>
-                <p data-i18n="footer-address2">Av. de Logroño, km 6</p>
-                <p data-i18n="footer-address3">50011 Zaragoza, España</p>
-                <div class="flex gap-6 mt-2 text-white">
-                    <a href="#"
-                        class="hover:text-mitiko-gold transition-colors flex items-center justify-center border border-[#8c9bab]/30 rounded-full w-10 h-10">In</a>
-                    <a href="#"
-                        class="hover:text-mitiko-gold transition-colors flex items-center justify-center border border-[#8c9bab]/30 rounded-full w-10 h-10">Fb</a>
-                </div>
-            </div>
-
-            <!-- Col 2: Contacto -->
-            <div class="md:col-span-3 flex flex-col gap-4">
-                <h4 class="text-white font-serif text-2xl mb-4 italic" data-i18n="footer-contact-title">Contacto</h4>
-                <a href="tel:976123456" class="hover:text-mitiko-gold transition-colors block w-fit">976 12 34 56</a>
-                <a href="mailto:info@torreyan.com"
-                    class="hover:text-mitiko-gold transition-colors block w-fit">info@torreyan.com</a>
-                <a href="#"
-                    class="mt-8 text-mitiko-gold hover:text-white transition-colors uppercase tracking-[0.15em] text-[10px] font-bold w-max border-b border-mitiko-gold pb-1"
-                    data-i18n="footer-work-with-us">Trabaja
-                    con nosotros</a>
-            </div>
-
-            <!-- Col 3: Horario -->
-            <div class="md:col-span-3 flex flex-col gap-4">
-                <h4 class="text-white font-serif text-2xl mb-4 italic" data-i18n="footer-hours-title">Horario</h4>
-                <p class="font-medium text-white mb-[-0.5rem]" data-i18n="footer-hours-days">Lunes - Domingo</p>
-                <p data-i18n="footer-hours-lunch">13:00 - 16:30</p>
-                <p data-i18n="footer-hours-dinner">20:00 - 23:30</p>
-                <p class="mt-6 text-xs italic text-[#8c9bab]/70 border-t border-[#8c9bab]/20 pt-4 w-max"
-                    data-i18n="footer-parking">Aparcamiento
-                    gratuito.</p>
-            </div>
-
-            <!-- Col 4: Legal -->
-            <div class="md:col-span-2 flex flex-col gap-4">
-                <h4 class="text-white font-serif text-2xl mb-4 italic" data-i18n="footer-legal-title">Legal</h4>
-                <a href="#" class="hover:text-mitiko-gold transition-colors block" data-i18n="footer-legal-notice">Aviso
-                    Legal</a>
-                <a href="#" class="hover:text-mitiko-gold transition-colors block"
-                    data-i18n="footer-privacy">Privacidad</a>
-                <a href="#" class="hover:text-mitiko-gold transition-colors block"
-                    data-i18n="footer-cookies">Cookies</a>
-                <a href="#" class="hover:text-mitiko-gold transition-colors block" data-i18n="footer-terms">Términos</a>
-            </div>
+    <!-- Main Dashboard Section (revealed when data loaded) -->
+    <main id="dashboard-content" class="dashboard-content">
+      <!-- KPI cards grid -->
+      <section class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span>累计销售额</span>
+            <span class="text-gold">¥</span>
+          </div>
+          <div class="kpi-value" id="total-sales-val">¥0</div>
+          <div class="kpi-subtitle">所选条件下的销售额总计</div>
         </div>
 
-        <div
-            class="max-w-7xl mx-auto mt-24 pt-8 border-t border-mitiko-gold/10 flex flex-col md:flex-row justify-between items-center text-[10px] text-[#8c9bab]/60 uppercase tracking-widest gap-4">
-            <p data-i18n="footer-copyright">&copy; 2026 TorreYan 华宴. Todos los derechos reservados.</p>
-            <p class="text-mitiko-gold/70" data-i18n="footer-design">Diseño inspirado en Mítiko</p>
+        <div class="kpi-card kpi-blue">
+          <div class="kpi-header">
+            <span>总销量</span>
+            <span style="color: var(--color-blue)">📦</span>
+          </div>
+          <div class="kpi-value" id="total-qty-val">0</div>
+          <div class="kpi-subtitle">售出产品件数总计</div>
         </div>
-    </footer>
 
-    <script>
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('-translate-y-full');
-        }
+        <div class="kpi-card kpi-green">
+          <div class="kpi-header">
+            <span>交易笔数</span>
+            <span style="color: var(--color-green)">📝</span>
+          </div>
+          <div class="kpi-value" id="transactions-val">0</div>
+          <div class="kpi-subtitle">成交订单交易行总数</div>
+        </div>
 
-        // Setup Language initially
-        function initLanguage() {
-            let savedLang = localStorage.getItem('torreyan_lang');
-            let langCode = 'es'; // default
+        <div class="kpi-card kpi-red">
+          <div class="kpi-header">
+            <span>客单价 (AOV)</span>
+            <span style="color: var(--color-red)">📈</span>
+          </div>
+          <div class="kpi-value" id="avg-order-val">¥0</div>
+          <div class="kpi-subtitle">单笔交易所含平均销售额</div>
+        </div>
+      </section>
 
-            if (savedLang) {
-                langCode = savedLang;
-            } else {
-                let sysLang = navigator.language || navigator.userLanguage;
-                let sysLangPrefix = sysLang.split('-')[0].toLowerCase();
-                if (['en', 'es', 'zh'].includes(sysLangPrefix)) {
-                    langCode = sysLangPrefix;
-                }
-            }
+      <!-- Charts Grid -->
+      <section class="charts-section">
+        <!-- Left large Chart (Line chart for sales trend) -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3 class="chart-title">销售额趋势分析</h3>
+          </div>
+          <div class="chart-container">
+            <canvas id="salesTrendChart"></canvas>
+          </div>
+        </div>
 
-            setLanguage(langCode);
-        }
+        <!-- Right Doughnut Chart (Category or region share) -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3 class="chart-title">产品类别占比</h3>
+          </div>
+          <div class="chart-container">
+            <canvas id="categoryShareChart"></canvas>
+          </div>
+        </div>
 
-        function setLanguage(lang) {
-            localStorage.setItem('torreyan_lang', lang);
-            document.getElementById('current-lang').innerText = lang.toUpperCase();
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (window.siteTranslations && window.siteTranslations[lang] && window.siteTranslations[lang][key]) {
-                    el.innerHTML = window.siteTranslations[lang][key];
-                }
-            });
-            // Update nav spacing for zh vs latin text
-            if (lang === 'zh') {
-                document.documentElement.style.setProperty('--tracking', 'normal');
-            } else {
-                document.documentElement.style.setProperty('--tracking', '0.2em');
-            }
-        }
+        <!-- Horizontal or vertical Bar chart (Top products) -->
+        <div class="chart-card" style="grid-column: 1 / -1;">
+          <div class="chart-header">
+            <h3 class="chart-title">最畅销产品 Top 8</h3>
+          </div>
+          <div class="chart-container">
+            <canvas id="productPerformanceChart"></canvas>
+          </div>
+        </div>
+      </section>
 
-        document.addEventListener('DOMContentLoaded', () => {
-            initLanguage();
+      <!-- Data Explorer Table Section -->
+      <section class="table-section">
+        <div class="table-header-bar">
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="search-input" class="search-input" placeholder="搜索产品、类别、销售员、地区...">
+          </div>
+          <div class="filter-group">
+            <select id="rep-filter" class="select-filter">
+              <option value="">所有销售员</option>
+            </select>
+            <select id="region-filter" class="select-filter">
+              <option value="">所有地区</option>
+            </select>
+            <select id="category-filter" class="select-filter">
+              <option value="">所有类别</option>
+            </select>
+          </div>
+        </div>
 
-            // Bind click events to lang buttons
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    setLanguage(e.target.getAttribute('data-lang'));
-                    // Force unfocus to hide dropdown on mobile/touch
-                    e.target.blur();
-                });
-            });
-        });
+        <!-- Table Grid -->
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th onclick="sortTable('date')">日期</th>
+                <th onclick="sortTable('product')">产品名称</th>
+                <th onclick="sortTable('category')">类别</th>
+                <th onclick="sortTable('rep')">销售员</th>
+                <th onclick="sortTable('region')">地区</th>
+                <th onclick="sortTable('sales')">销售额</th>
+                <th onclick="sortTable('quantity')" class="text-right">数量</th>
+              </tr>
+            </thead>
+            <tbody id="table-body">
+              <!-- Dynamically populated rows -->
+            </tbody>
+          </table>
+        </div>
 
-        // TheFork Reservation Modal functions
-        const modal = document.getElementById('reservation-modal');
-        const modalContent = document.getElementById('reservation-modal-content');
-        const iframe = document.getElementById('thefork-iframe');
+        <!-- Pagination -->
+        <div class="pagination">
+          <span id="pagination-info">显示 0 到 0 条，共 0 条</span>
+          <div class="pagination-controls">
+            <button id="prev-page" class="pagination-btn" disabled>上一页</button>
+            <button id="next-page" class="pagination-btn" disabled>下一页</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
 
-        function openReservationModal() {
-            iframe.src = "https://widget.thefork.com/es/350edaee-adc2-4f33-9770-e165febae1d7?step=date&utm_source=mitiko.es";
-            modal.classList.remove('opacity-0', 'invisible');
-            modalContent.classList.remove('scale-95');
-            modalContent.classList.add('scale-100');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeReservationModal() {
-            modal.classList.add('opacity-0', 'invisible');
-            modalContent.classList.remove('scale-100');
-            modalContent.classList.add('scale-95');
-            document.body.style.overflow = '';
-            setTimeout(() => {
-                iframe.src = "";
-            }, 500); // Clear iframe after animation
-        }
-
-        // Close modal on outside click
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeReservationModal();
-            }
-        });
-
-        // Transparent to solid/glass header on scroll
-        const header = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('glass-header');
-                header.classList.remove('py-8');
-                header.classList.add('py-4');
-            } else {
-                header.classList.remove('glass-header');
-                header.classList.add('py-8');
-                header.classList.remove('py-4');
-            }
-        });
-    </script>
+  <!-- Custom Scripts -->
+  <script src="sample_data.js"></script>
+  <script src="app.js"></script>
 </body>
-
 </html>
